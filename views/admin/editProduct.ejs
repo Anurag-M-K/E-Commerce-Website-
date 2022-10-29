@@ -1,17 +1,7 @@
-
-<section class="home-section">
-    <!-- <nav>
-      <div class="sidebar-button">
-        <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard">Category Page</span>
-      </div>
-      <div class="search-box">
-        <input type="text" placeholder="Search...">
-        <i class='bx bx-search'></i>
-      </div> -->
-
-    </nav>
-</section>
+<main class="main-container">
+    <div class="main-title">
+        <p class="font-weight-bold">DASHBOARD</p>
+    </div>
 
 
 <section >
@@ -21,7 +11,7 @@
                 <div class="d-flex pe-3">
                     <div class="input-group mb-3 pe-3 w-50">
                         <span class="input-group-text" id="inputGroup-sizing-default">Product Name</span>
-                        <input name="Name" type="text"  class="form-control" value="<%= products.Name %>" required aria-label="Sizing example input"
+                        <input name="productName" type="text"  class="form-control" value="<%= products.Product %>" required aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-default">
                     </div>
                     <div class="input-group mb-3 w-25 ps-3 pe-3">
@@ -29,18 +19,17 @@
                         <input name="Price" type="number" class="form-control"  value="<%= products.Price %>"  aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-default">
                     </div>
-                    <div class="input-group mb-3 w-25 ps-3">
-                        <span class="input-group-text" id="inputGroup-sizing-default">R</span>
-                        <input name="sellingPrice" type="number" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default">
-                    </div>
+                 
                 </div>
+                
                  <div class="d-flex">
                     <div class="input-group mb-3 w-50 ps-0 pe-3">
                         <span class="input-group-text" id="inputGroup-sizing-default">Select Category</span>
                         <select name="Category" class="form-select" value="<%= products.Category %>" aria-label="Default select example">
-                            <option selected></option>
-                          
+                            <% for (var i=0;i<products.length;i++) { %>
+                            <option selected><%= products[i].Category %></option>
+                            <% } %>
+                   
                             <option ></option>
                            
                           </select>
@@ -49,10 +38,12 @@
                     </div> 
                     
                     <div class="input-group mb-3 w-50 ps-0 pe-3">
+
                         <span class="input-group-text" id="inputGroup-sizing-default">Select Brand</span>
                         <select name="brandName" class="form-select" aria-label="Default select example">
-                            <option selected></option>
-                            
+                            <% for (var i=0;i<products.length;i++) { %>
+                            <option selected><%= products[i].Brand %></option>
+                            <% } %>
                           </select>
                     </div>
                     
@@ -60,27 +51,27 @@
                 <div class="d-flex">
                     <div class="input-group mb-3 pe-3 w-50">
                         <span class="input-group-text" id="inputGroup-sizing-default">Quantity</span>
-                        <input name="Quantity" value="<%= products.Quantity %>" type="number" class="form-control" required aria-label="Sizing example input"
+                        <input name="Quantity" value="<%= products[i].Quantity %>" type="number" class="form-control" required aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-default">
                     </div>
                     
             
                 </div>
 
-                <div class="d-flex">
+                <!-- <div class="d-flex">
                     <div class="input-group mb-3 pe-3">
                         <div class="input-group">
                             <span class="input-group-text" name="productDescriptionName">Product Description</span>
                             <textarea class="form-control" aria-label="With textarea"></textarea>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
 
             
 
                 <div class="input-group">
-                    <input type="file" class="form-control" value=" <%= products.Quantity %>" name="productImage" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" >
+                    <input type="file" class="form-control"  name="productImage" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" >
                     <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
                 </div>
                 <div class="d-felx justify-content-center mt-3">
@@ -89,7 +80,7 @@
                         <input type="reset" value="RESET ITEM" class="btn btn-info m-2 w-25">
                  
                 </div>
-                   
+               
             </form>
 
         </div>

@@ -12,7 +12,9 @@ const adminUserController = require('../controllers/admin/adminUserController')
 const { response } = require("express");
 const brandHelpers = require("../models/brandHelpers");
 const multer = require('multer');
-
+const categoryHelper = require("../models/categoryHelper");
+const category = require('../models/categoryHelper')
+const Brand = require('../models/brandHelpers')
 
 
 //Multer Start
@@ -26,7 +28,11 @@ const upload = multer({
     storage: storage,
     fileFilter:(req,file,cb)=>{
         if(
-            file.mimetype == 'image/jpeg'|| file.mimetype == 'image/jpg'
+            file.mimetype == 'image/jpeg'|| 
+            file.mimetype == 'image/jpg'||
+            file.mimetype == 'image/png' ||
+            file.mimetype == 'image/gif' ||
+            file.mimetype == 'image/webp'
         ){
             cb(null, true)
         }else{
@@ -135,6 +141,25 @@ router.get('/deleteProduct',adminProductController.productDelete)
 
 //add product form page
 router.get("/addProductPage", adminProductController.productForm);
+
+
+//edit product
+router.get('/editProduct',adminProductController.editingProduct)
+
+
+router.post('/productUpdate',upload.single('productImage'),adminProductController.productUpdateController)
+
+
+router.get('/addProductPage',adminProductController.adminAddProductPage)
+
+
+router.post('/adminAddNewProduct',upload.single('productImage'),adminProductController.productAdding)
+
+
+router.get('/editProduct',adminProductController.updateProductDetails)
+
+
+router.post('/adminAddNewProduct',upload.single('productImage'),adminProductController.adminAddNewProductAction)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
