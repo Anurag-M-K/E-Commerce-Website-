@@ -100,22 +100,14 @@ router.post('/addProduct',upload.single('productImage'),(req,res)=>{
 
 //log out
 
-router.get('/adminLogout',(req,res)=>{
-    req.session.destroy(function(err){
-        if(err){
-            res.send('error')
-        }else{
-            res.redirect('admin')
-        }
-    })
-})
+router.get('/adminLogout',adloginController.adminLogoutControllers)
 
 
 //edit product 
 router.get('/editProduct', async(req,res)=>{
     let products =await productHelper.getProductDetails(req.query.id).then((response)=>{
         
-    res.render('admin/editProduct',{admin:true,user:false,products})
+    res.render('admin/editProduct',{products,admin:true,user:false})
 })
 })
 

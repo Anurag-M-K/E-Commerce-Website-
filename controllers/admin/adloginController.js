@@ -106,6 +106,27 @@ const productPage = (req,res)=>{
     })
 }
 
+
+
+
+
+
+
+/////admin logout
+
+const adminLogoutControllers = (req,res)=>{
+  req.session.destroy(function(err){
+      if(err){
+          res.send('error')
+      }else{
+          res.redirect('/admin')
+      }
+  })
+}
+
+
+
+
 module.exports = {
   loginview,
   adminLoginAction,
@@ -119,5 +140,6 @@ module.exports = {
   addBrandController,
   brandSaveDatabaseController,
   deleteBrandController,
-  productPage
+  productPage,
+  adminLogoutControllers
 };
