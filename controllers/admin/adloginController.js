@@ -64,9 +64,9 @@ const addCategoryController = (req, res) => {
 // brand button
 
 const brandController = (req, res) => {
-  console.log("fkjdsbv");
+  
   brandHelpers.getAllBrands().then((Brand) => {
-    res.render("admin/brandCategory", { Brand });
+    res.render("admin/brandCategory", { Brand,admin:true,user:false });
   });
 };
 

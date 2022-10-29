@@ -59,7 +59,7 @@ const userSessionController = (req,res)=>{
 //
 const userSignupBcrypt = (req,res)=>{
     userHelpers.doSignup(req.body).then((response)=>{
-        console.log(response);
+
         res.render("users/userHome",{user:true,admin:false})
     })
 }
@@ -68,4 +68,13 @@ const userSignupBcrypt = (req,res)=>{
 
 
 // exports.usersLog = usersLog;
-module.exports = {usersLog,userSignup,userHomePage,loginFromHome,signupFromHome,userLogin,toUserHome,userSessionController,userSignupBcrypt}
+module.exports = {
+    usersLog,
+    userSignup,
+    userHomePage,
+    loginFromHome,
+    signupFromHome,
+    userLogin,
+    toUserHome,
+    userSessionController,
+    userSignupBcrypt}
