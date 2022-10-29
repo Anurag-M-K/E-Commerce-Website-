@@ -3,18 +3,11 @@ const router = express.Router();
 const adloginController = require("../controllers/admin/adloginController");
 const adminCategory = require('../controllers/admin/adminCategory')
 const usersController = require("../controllers/users/usersController");
-const adminHelper = require("../models/helpers/admin-helper");
-const adminLoginHelper = require("../models/helpers/admin-helper");
-const productHelper = require("../models/productHelpers.js");
 const adminProductController = require('../controllers/admin/adminProductController')
 const adminBrandController = require('../controllers/admin/adminBrandController')
 const adminUserController = require('../controllers/admin/adminUserController')
-const { response } = require("express");
-const brandHelpers = require("../models/brandHelpers");
 const multer = require('multer');
-const categoryHelper = require("../models/categoryHelper");
-const category = require('../models/categoryHelper')
-const Brand = require('../models/brandHelpers')
+
 
 
 //Multer Start
@@ -37,7 +30,7 @@ const upload = multer({
             cb(null, true)
         }else{
             cb(null, false)
-            cb(new Error('only jpeg, jpg'))
+            cb(new Error('only jpeg, jpg,png,gif and webp'))
         }
     }
 })
@@ -45,35 +38,26 @@ const upload = multer({
 
 
 router.get("/admin", adloginController.loginview);
-
 router.post("/home-admin", adloginController.adminLoginAction);
-
 router.get("/", usersController.userHomePage);
 
 
 
 
 
-//admin panel button to admin panel
+//+++++++++++++++++++++++++++++++++++++++++admin panel button to admin panel+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 router.get("/admin-panel", adloginController.adminPanelButtonController);
-
-
-//log out
-
 router.get('/adminLogout',adloginController.adminLogoutControllers)
 
 
 
 
 
-//+++++++++++++++++++++++++++++++++++++++++ADMIN USER MANAGE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
-// for finding user and pass them to admin side user list
+
+//+++++++++++++++++++++++++++++++++++++++++ADMIN USER MANAGE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 router.get("/", adminUserController.userManagement);
 
-router.get("/user-management", adminUserController.userManagement);
-
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
 
 
@@ -81,86 +65,39 @@ router.get("/user-management", adminUserController.userManagement);
 
 
 //-------------------------------------------BRAND DETAILS----------------------------------------------------------------------------//
-
-
-//add brand
-
 router.post("/brandCategory", adminBrandController.addBrandController);
-
-// brand save to brand page and database
-
 router.post("/brandCategory", adminBrandController.brandSaveDatabaseController);
-
-//deletin brand
 router.get("/deleteBrand", adminBrandController.deleteBrandController);
-
-//brand category button
 router.get("/brandCategory", adminBrandController.brandController);
 
-//----------------------------------------------------------------------------------------------------------------------------------//
+
 
 
 
 
 
 /******************************************************CATEGORY DETAILS*******************************************************************/
-
-//catgeory page
 router.get("/adminCategory", adminCategory.catogoryPageController);
-
-
-//add catogory
 router.post("/adminCategory", adminCategory.addCategoryController);
-
-
-// DELETE  CATEGORY
 router.get("/deleteCategory", adminCategory.deleteCategoryController);
 
-/*****************************************************************************************************************************************/
 
 
 
 
 
-/////////////////////////////////////////////////////////PRODUCT DETAILS//////////////////////////////////////////////////////////////////
-
-
-// Multer Start
+//********************************************************PRODUCT DETAILS***************************************************************//
 router.post('/addProduct',upload.single('productImage'),adminProductController.productAdding)
-
-
-//product page loading
-
 router.get('/product',adminProductController.productPage)
-
-
-//delte product
-
 router.get('/deleteProduct',adminProductController.productDelete)
-
-
-//add product form page
 router.get("/addProductPage", adminProductController.productForm);
-
-
-//edit product
 router.get('/editProduct',adminProductController.editingProduct)
-
-
 router.post('/productUpdate',upload.single('productImage'),adminProductController.productUpdateController)
-
-
 router.get('/addProductPage',adminProductController.adminAddProductPage)
-
-
 router.post('/adminAddNewProduct',upload.single('productImage'),adminProductController.productAdding)
-
-
 router.get('/editProduct',adminProductController.updateProductDetails)
-
-
 router.post('/adminAddNewProduct',upload.single('productImage'),adminProductController.adminAddNewProductAction)
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 module.exports = router

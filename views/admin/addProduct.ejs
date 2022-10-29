@@ -2,41 +2,71 @@
     <div class="main-title">
         <p class="font-weight-bold">DASHBOARD</p>
     </div>
-    <section>
-        <!-- <div class="container mt-4"> -->
-            <div class="row">
-                <div class="col-md-6 align-items-center "
-                    style="margin-left: 340px; margin-top: 95px; background-color: dimgrey; border-radius: 20px;">
 
-                    <h2 class="text-center">Add Product </h2>
-                    <form action="/admin/addProduct" method="post" enctype="multipart/form-data">
-                        <label for="">Category</label>
-                        <input type="text" name="Category" class="form-control">
 
-                        <label for="">Brand</label>
-                        <input type="text" name="brandName" class="form-control">
-
-                        <label for="">Product Name</label>
-                        <input type="text" name="productName" class="form-control">
-
-                        <label for="">Price</label>
-                        <input type="number" name="Price" class="form-control">
-
-                        <label for="">Quantity</label>
-                        <input type="number" name="Quantity" class="form-control">
-
-                        <label for="">Image</label>
-                        <input type="file" name="productImage" class="form-control">
-
-                        <!-- <label for="">Image</label>
-                    <input type="file" name="images" class="form-control"> -->
-
-                        <button type="submit" class="btn btn-success mt-4">Submit</button>
-                    </form>
+<section >
+    <div class="container">
+        <div class="row pb-5">
+            <form action="/admin/adminAddNewProduct" method="post" enctype="multipart/form-data">
+                <div class="d-flex pe-3">
+                    <div class="input-group mb-3 pe-3 w-50">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Product Name</span>
+                        <input name="productName" type="text"  class="form-control"  required aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3 w-25 ps-3 pe-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Actual Price</span>
+                        <input name="Price" type="number" class="form-control"   aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                 
                 </div>
-            </div>
+                
+                 <div class="d-flex">
+                    <div class="input-group mb-3 w-50 ps-0 pe-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Select Category</span>
+                        <input type="text" name="Category">
+                        
+                    </div>
 
-        <!-- </div> -->
-    </section>
+                    </div> 
+                    
+                    <div class="input-group mb-3 w-50 ps-0 pe-3">
 
-</main>
+                        <span class="input-group-text" id="inputGroup-sizing-default">Select Brand</span>
+                        <input type="text" name="brandName">
+                    </div>
+                    
+                </div>
+                <div class="d-flex">
+                    <div class="input-group mb-3 pe-3 w-50">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Quantity</span>
+                        <input  name="Quantity" type="number" class="form-control" required aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    
+            
+                </div>
+
+               
+
+
+            
+
+                <div class="input-group">
+                    <input type="file" class="form-control"  name="productImage" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" >
+                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+                </div>
+                <div class="d-felx justify-content-center mt-3">
+                    
+                        <input type="submit" value="ADD PRODUCT" class="btn btn-success m-2">
+                        <input type="reset" value="RESET ITEM" class="btn btn-info m-2 w-25">
+                 
+                </div>
+               
+            </form>
+
+        </div>
+    </div>
+</section>
+</section>

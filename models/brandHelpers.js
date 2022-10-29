@@ -6,9 +6,7 @@ var ObjectId = require('mongodb').ObjectId
 
 module.exports = {
     addbrand: (Brand,callback)=>{
-        console.log(Brand)
         db.get().collection(collection.BRAND_COLLECTION).insertOne(Brand).then((data)=>{
-           console.log(data)
             callback(data)
         })
     },
@@ -16,7 +14,6 @@ module.exports = {
     getAllBrands:()=>{
         return new Promise(async(resolve,reject)=>{
             let Brand = await db.get().collection(collection.BRAND_COLLECTION).find().toArray()
-            console.log(Brand)
             resolve(Brand)
         })
     },

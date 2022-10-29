@@ -4,9 +4,7 @@ var db = require('../config/connection')
 var objectId = require('mongodb').ObjectId
 module.exports = {
    addCategory:(Categories,callback)=>{
-    console.log(Categories)
     db.get().collection(collection.CATEGORIES_COLLECTION).insertOne(Categories).then((data)=>{
-       console.log(data)
         callback(data)
     })
 },

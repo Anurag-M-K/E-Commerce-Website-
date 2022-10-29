@@ -40,7 +40,7 @@
                     <div class="input-group mb-3 w-50 ps-0 pe-3">
 
                         <span class="input-group-text" id="inputGroup-sizing-default">Select Brand</span>
-                        <select name="brandName" class="form-select" aria-label="Default select example">
+                        <select name="brandName" class="form-select" aria-label="Dfefault select example">
                             <% for (var i=0;i<products.length;i++) { %>
                             <option selected><%= products[i].Brand %></option>
                             <% } %>
@@ -51,7 +51,7 @@
                 <div class="d-flex">
                     <div class="input-group mb-3 pe-3 w-50">
                         <span class="input-group-text" id="inputGroup-sizing-default">Quantity</span>
-                        <input name="Quantity" value="<%= products[i].Quantity %>" type="number" class="form-control" required aria-label="Sizing example input"
+                        <input  value="<%= products[i].Quantity %>" name="Quantity" type="number" class="form-control" required aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-default">
                     </div>
                     

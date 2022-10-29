@@ -36,7 +36,6 @@ app.use(sessions({
 
 
 app.use(express.json())
-// app.use(logger())
 app.use(expressLayouts)
 app.use(express.static('public'))
 app.use('/css',express.static(path.join(__dirname + 'public/css')))

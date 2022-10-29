@@ -10,13 +10,9 @@ module.exports = {
             let loginStatus = false
             let response = {}
             let user = await db.get().collection('user').findOne({Name:userdata.username})
-            console.log('user is :',user);
             if(user){
                 bcrypt.compare(userdata.Password,user.Password).then((status)=>{
-                    console.log(status);
-
                     if(status){
-                        console.log('login success')
                         response.user = user
                         response.status = true
                         resolve(response)

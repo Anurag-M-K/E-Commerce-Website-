@@ -11,7 +11,6 @@ const catogoryPageController = (req, res) => {
   };
 
   const addCategoryController = (req, res) => {
-    console.log(req.body);
     categoryHelper.addCategory(req.body, (result) => {
       res.redirect("adminCategory");
     });
@@ -19,8 +18,6 @@ const catogoryPageController = (req, res) => {
 
 
   const deleteCategoryController = (req, res) => {
-    console.log(req.query.id);
-    
     categoryHelper.deleteCategory(req.query.id).then((response) => {
       res.redirect("/admin/admincategory");
     });

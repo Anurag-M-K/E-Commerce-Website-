@@ -100,21 +100,7 @@ const adminAddProductPage = (req,res)=>{
     })
 }
 
-// const addNewProduct = (req,res)=>{
-    
-//     console.log(req.file)
 
-//     productHelper.addProduct({
-//         Picture : req.file.filename,
-//         productName,
-//         Price,
-//         Category,
-//         brandName,
-//         Quantity
-//     }).then((response)=>{
-//         res.redirect('/admin/adminProductManage')
-//     })
-// }
 
 const updateProductDetails = async(req,res)=>{
     let productId = req.query.id
