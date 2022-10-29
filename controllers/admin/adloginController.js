@@ -5,6 +5,10 @@ const deleteCategory = require("../../models/categoryHelper");
 const categoryHelper = require("../../models/categoryHelper");
 const brandHelpers = require("../../models/brandHelpers");
 const productHelpers = require("../../models/productHelpers");
+
+
+
+
 const loginview = (req, res) => {
   res.render("../views/admin/admin-login", { admin: true, user: false });
   // res.render('../views/admin/index')
@@ -37,29 +41,10 @@ const productForm = (req, res) => {
   res.render("admin/addProduct",{admin:true,user:false});
 };
 
-const deleteCategoryController = (req, res) => {
-  console.log(req.query.id);
-  
-  categoryHelper.deleteCategory(req.query.id).then((response) => {
-    res.redirect("/admin/admincategory");
-  });
-};
 
-//catogory page loading
 
-const catogoryPageController = (req, res) => {
-  categoryHelper.getAllCategories().then((Categories) => {
-    console.log("done", Categories);
-    res.render("admin/adminCategory", { Categories, admin: true, user: false });
-  });
-};
 
-const addCategoryController = (req, res) => {
-  console.log(req.body);
-  categoryHelper.addCategory(req.body, (result) => {
-    res.redirect("adminCategory");
-  });
-};
+
 
 // brand button
 
@@ -132,9 +117,8 @@ module.exports = {
   adminLoginAction,
   userManagement,
   productForm,
-  deleteCategoryController,
-  catogoryPageController,
-  addCategoryController,
+ 
+  
   brandController,
   adminPanelButtonController,
   addBrandController,

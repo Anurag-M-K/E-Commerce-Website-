@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const adloginController = require("../controllers/admin/adloginController");
+const adminCategory = require('../controllers/admin/adminCategory')
 const usersController = require("../controllers/users/usersController");
 const adminHelper = require("../models/helpers/admin-helper");
 const adminLoginHelper = require("../models/helpers/admin-helper");
 const productHelper = require("../models/productHelpers.js");
-const categoryHelpers = require("../models/categoryHelper");
+
 const { response } = require("express");
 const brandHelpers = require("../models/brandHelpers");
 const multer = require('multer');
@@ -50,13 +51,13 @@ router.get("/addProductPage", adloginController.productForm);
 router.get("/", adloginController.userManagement);
 
 // DELETE  CATEGORY
-router.get("/deleteCategory", adloginController.deleteCategoryController);
+router.get("/deleteCategory", adminCategory.deleteCategoryController);
 
 //catgeory page
-router.get("/adminCategory", adloginController.catogoryPageController);
+router.get("/adminCategory", adminCategory.catogoryPageController);
 
 //add catogory
-router.post("/adminCategory", adloginController.addCategoryController);
+router.post("/adminCategory", adminCategory.addCategoryController);
 
 //brand category button
 router.get("/brandCategory", adloginController.brandController);
