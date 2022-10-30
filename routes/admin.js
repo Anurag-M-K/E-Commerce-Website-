@@ -10,6 +10,7 @@ const multer = require('multer');
 
 
 
+
 //Multer Start
 const storage = multer.diskStorage({
     destination: './public/images',
@@ -56,7 +57,7 @@ router.get('/adminLogout',adloginController.adminLogoutControllers)
 
 
 //+++++++++++++++++++++++++++++++++++++++++ADMIN USER MANAGE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-router.get("/", adminUserController.userManagement);
+router.get("/user-management", adminUserController.userManagement);
 
 
 
@@ -97,6 +98,10 @@ router.get('/addProductPage',adminProductController.adminAddProductPage)
 router.post('/adminAddNewProduct',upload.single('productImage'),adminProductController.productAdding)
 router.get('/editProduct',adminProductController.updateProductDetails)
 router.post('/adminAddNewProduct',upload.single('productImage'),adminProductController.adminAddNewProductAction)
+
+
+
+
 
 
 

@@ -22,14 +22,12 @@
         <div class="menu-icon" onclick="openSidebar()">
           <span class="material-icons-outlined">menu</span>
         </div>
-        <div class="header-left">
-          <span class="material-icons-outlined">search</span>
-        </div>
-        <div class="header-right">
-          <span class="material-icons-outlined">notifications</span>
-          <span class="material-icons-outlined">email</span>
-          <span class="material-icons-outlined">account_circle</span>
-        </div>
+       
+        <form class="d-flex  " style="    margin-left: 907px; ;"   role="search">
+          <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success justify-content-md-end" type="submit">Search</button>
+        </form>
+       
       </header>
       <!-- End Header -->
 
@@ -37,20 +35,20 @@
       <aside id="sidebar">
         <div class="sidebar-title">
           <div class="sidebar-brand">
-            <span class="material-icons-outlined">inventory</span> Bob's Inventory
+            <span class="material-icons-outlined">inventory</span> Cric Store
           </div>
           <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
         </div>
 
         <ul class="sidebar-list">
              <li class="sidebar-list-item">
-              <a href="/admin/admin-panel" class="btn btn-primary"> <span class="material-icons-outlined">dashboard</span> Dashboard</a>
+              <a href="/admin/admin-panel" class="btn btn-primary" style=" width: 215px;">  Dashboard</a>
           </li>
         
 
           <ul class="sidebar-list">
             <li class="sidebar-list-item">
-             <a href="/admin/adminCategory" class="btn btn-primary"> <span class="material-icons-outlined">dashboard</span> Category</a>
+             <a href="/admin/adminCategory" class="btn btn-primary"  style=" width: 215px;">  Category</a>
          </li>
 
 
@@ -58,19 +56,19 @@
 
 
           <li class="sidebar-list-item">
-            <a href="/admin/product" class="btn btn-primary"><span class="material-icons-outlined">fact_check</span> Products</a>
+            <a href="/admin/product" class="btn btn-primary"  style=" width: 215px;"> Products</a>
           </li>
           <li class="sidebar-list-item"> 
-        <a href="" class="btn btn-primary"><span class="material-icons-outlined" >add_shopping_cart</span> Orders </a>
+        <a href="" class="btn btn-primary"  style=" width: 218px;"> Orders </a>
           </li>
           <li class="sidebar-list-item">
-            <a href="/admin/user-management" class="btn btn-primary">    <span class="material-icons-outlined">shopping_cart</span> Users </a>
+            <a href="/admin/user-management" class="btn btn-primary"  style=" width: 218px">  Users </a> 
           </li>
           <li class="sidebar-list-item">
-            <a href="/admin/brandCategory" class="btn btn-primary">   <span class="material-icons-outlined">poll</span> Brand </a>
+            <a href="/admin/brandCategory" class="btn btn-primary" style=" width: 218px">Brand </a>
           </li>
           <li class="sidebar-list-item">
-          <a href="/admin/adminLogout" class="btn btn-primary"><span class="material-icons-outlined">settings</span> Log out</a> 
+          <a href="/admin/adminLogout" class="btn btn-primary" style=" width: 218px">Log out</a> 
           </li>
         </ul>
       </aside>

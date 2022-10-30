@@ -26,7 +26,7 @@ app.set('views',path.join(__dirname,'views'))
 app.set('layout','layouts/layout')
 
 
-
+app.use(logger('dev'))
 app.use(sessions({
     secret:'fhihiuher98734539845hwefhjkfn',
     saveUninitialized:true,
@@ -67,6 +67,22 @@ db.connect((err)=>{
     if(err) console.log('connection error'+err)
     else console.log("database connected successfully")
 })
+
+
+
+
+//mail sender
+
+const userSignupBcrypt = (req,res)=>{
+    userHelpers.doSignup(req.body).then((response)=>{
+        res.render("users/userHome",{user:true,admin:false})
+    })
+}
+
+
+
+
+
 
 
 app.use('/',usersRouter)

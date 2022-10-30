@@ -6,6 +6,14 @@ const usersLog = (req,res)=>{
     res.render('../views/users/usersLogin')
 }
 
+
+
+
+// for send mail 
+
+
+
+
 const userSignup = (req,res)=>{
     userHelpers.doSignup(req.body).then((response)=>{
         console.log(response)
@@ -19,7 +27,7 @@ const userHomePage = (req,res)=>{
 }
 
 const loginFromHome = (req,res)=>{
-    res.render('users/usersLogin')
+    res.render('users/usersLogin',{user:true,admin:false})
 }
 
 // register click to user signup
@@ -29,7 +37,7 @@ const signupFromHome = (req,res)=>{
 }
 
 const userLogin = (req,res)=>{
-    res.render('./users/usersLogin')
+    res.render('./users/usersLogin',{usre:true,admin:false})
 }
 
 
@@ -37,7 +45,7 @@ const userLogin = (req,res)=>{
 const toUserHome = (req,res)=>{
     let user = req.session.user
     console.log(user+ "somebody login");
-    res.render('users/userHome',{user})
+    res.render('users/userHome',{user:true,admin:false})
 }
 
 
@@ -48,21 +56,26 @@ const userSessionController = (req,res)=>{
         if(response.status){
             req.session.loggedIn=true
             req.session.user = response.user
-            res.render('users/userHome')
+            res.render('users/userHome',{user:true,admin:false,response})
         }else{
             res.render('users/usersLogin')
         }
     })
 }
 
-
 //
 const userSignupBcrypt = (req,res)=>{
     userHelpers.doSignup(req.body).then((response)=>{
-
         res.render("users/userHome",{user:true,admin:false})
     })
 }
+
+
+//nodemailer email sending 
+
+
+
+
 
 
 
@@ -77,4 +90,5 @@ module.exports = {
     userLogin,
     toUserHome,
     userSessionController,
-    userSignupBcrypt}
+    userSignupBcrypt,
+    }
