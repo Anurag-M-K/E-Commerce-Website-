@@ -45,7 +45,7 @@ module.exports = {
                     Category:productDetails.Category,
                     brandName:productDetails.brandName,
                     Quantity : productDetails.Quantity,
-                    Image: productImage,
+                    Pitcure: productImage,
                 },
             }).then((response)=>{
                 resolve(response)
@@ -54,8 +54,8 @@ module.exports = {
     },
     showOneProduct:(id)=>{
         return new Promise((resolve,reject)=>{
-            db.get().collection(collections.PRODUCT_COLLECTION).findOne({_id:ObjectId(id)}).then((response)=>{
-                resolve(response)
+            db.get().collection(collections.PRODUCT_COLLECTION).findOne({_id:ObjectId(id)}).then((product)=>{
+                resolve(product)
             })
         })
     }

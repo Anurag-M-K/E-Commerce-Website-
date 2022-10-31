@@ -2,9 +2,6 @@
 const productHelper = require('../../models/productHelpers')
 const category = require('../../models/categoryHelper')
 const Brand = require('../../models/brandHelpers');
-const categoryHelper = require('../../models/categoryHelper');
-const adminHelper = require('../../models/helpers/admin-helper');
-
  //product adding form
 
 const productForm = (req, res) => {
@@ -14,14 +11,14 @@ const productForm = (req, res) => {
   //multer stert
 
   const productAdding = (req,res)=>{
-    console.log(req.body);
-    console.log(req.files);
     const {
+        
         productName,
         Price,
         Category,
         brandName,
         Quantity,
+        
     }=req.body
     productHelper.addProduct({
         
@@ -64,18 +61,18 @@ const productDelete = (req,res)=>{
 
 
 
-//product update
+//product update button to update
 
-const productUpdateController = (req,res)=>{
-    let id = req.body.id;
-    let newProductData = req.body
-    let newImageId = req.file.filename
-    productHelper.editProduct(id,newProductData,newImageId).then(()=>{
-        productHelper.getAllProducts().then((products)=>{
-            res.redirect('admin/product',{admin:true,products})
-        })
-    })
-}
+// const productUpdateController = (req,res)=>{
+//     let id = req.body.id;
+//     let newProductData = req.body
+//     let newImageId = req.file.filename
+//     productHelper.updateProductDetails(id,newProductData,newImageId).then(()=>{
+//         productHelper.getAllProducts().then((products)=>{
+//             res.redirect('admin/product',{admin:true,products})
+//         })
+//     })
+// }
 
 
 const adminAddProductPage = (req,res)=>{
@@ -89,11 +86,14 @@ const adminAddProductPage = (req,res)=>{
 
 
 const updateProductDetails = async(req,res)=>{
+    console.log(req.query.id);
     
         let productId = req.query.id;
-        let product = await productHelper.showOneProduct(productId);
+        let product = await productHelper.getProductDetails(productId);   
         category.getAllCategories().then((categoryDetails)=>{
+            
             Brand.getAllBrands().then((brandDetails)=>{
+          
                 res.render('admin/editProduct',{
                     admin:true,
                     categoryDetails,
@@ -109,21 +109,17 @@ const updateProductDetails = async(req,res)=>{
 
 
 
-
-
-
-
-
-
 const updateProductDetailsAction = (req,res)=>{
+    console.log("id",req.body);
 
         let id = req.body.id;
         let newProductData = req.body;
         let newImageId = req.file.filename;
         productHelper.updateProductDetails(id,newProductData,newImageId).then(()=>{
             productHelper.getAllProducts().then((products)=>{
-                res.redirect('admin/product', {
-                    admin:true,products
+                res.render('admin/adminProductManage',{
+                    
+                    admin:true,user:false,products
                 })
             })
         })
@@ -145,7 +141,7 @@ const updateProductDetailsAction = (req,res)=>{
 
   
 
-    productUpdateController,
+    // productUpdateController,
 
     adminAddProductPage,
 

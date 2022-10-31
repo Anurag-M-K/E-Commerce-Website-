@@ -92,12 +92,11 @@ router.post('/addProduct',upload.single('productImage'),adminProductController.p
 router.get('/product',adminProductController.productPage)
 router.get('/deleteProduct',adminProductController.productDelete)
 router.get("/addProductPage", adminProductController.productForm);
-router.post('/productUpdate',upload.single('productImage'),adminProductController.productUpdateController)
-router.get('/addProductPage',adminProductController.adminAddProductPage)
-router.post('/adminAddNewProduct',upload.single('productImage'),adminProductController.productAdding)
-router.get('/editProduct',adminProductController.updateProductDetails)
 router.post('/updateProductDetails',upload.single('productImage'),adminProductController.updateProductDetailsAction)
+router.get('/addProductPage',adminProductController.adminAddProductPage)
 
+// router.post('/productUpdate',upload.single('productImage'),adminProductController.productUpdateController)
+router.post('/adminAddNewProduct',upload.single('productImage'),adminProductController.productAdding)
 router.get('/showEditProductPage',adminProductController.updateProductDetails)
 
 
