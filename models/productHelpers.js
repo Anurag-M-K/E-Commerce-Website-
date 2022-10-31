@@ -18,7 +18,6 @@ module.exports = {
     getAllProducts : ()=>{
         return new Promise(async(resolve,reject)=>{
          let products = await db.get().collection(collections.PRODUCT_COLLECTION).find().toArray()
-            console.log( "not coming" +products)
             resolve(products)
         })
     },
@@ -37,7 +36,7 @@ module.exports = {
             })
         })
     },
-    editProduct : (productId,productDetails,Image)=>{
+    updateProductDetails : (productId,productDetails,productImage )=>{
         return new Promise((resolve,reject)=>{
             db.get().collection(collections.PRODUCT_COLLECTION).updateOne({_id:ObjectId(productId)},{
                 $set:{
@@ -46,10 +45,10 @@ module.exports = {
                     Category:productDetails.Category,
                     brandName:productDetails.brandName,
                     Quantity : productDetails.Quantity,
-                    Image: productImage
+                    Image: productImage,
                 },
             }).then((response)=>{
-                resolve()
+                resolve(response)
             })
         })
     },

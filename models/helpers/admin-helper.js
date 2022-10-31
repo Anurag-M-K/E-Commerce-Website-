@@ -20,7 +20,6 @@ module.exports={
           bcrypt.compare(admindata.password,admin.Password).then((status)=>{
             if(status)
             {
-              console.log('login success')
               response.user=admin
               response.status=true
               resolve(response)

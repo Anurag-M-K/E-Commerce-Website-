@@ -73,8 +73,6 @@ body {
     background-color: #21232d;
     color: #9799ab;
     overflow-y: auto;
-    transition: all 0.5s;
-    -webkit-transition: all 0.5s;
   }
   
   .sidebar-title {
@@ -113,17 +111,10 @@ body {
   .sidebar-responsive {
     display: inline !important;
     position: absolute;
-    /*
-      the z-index of the ApexCharts is 11
-      we want the z-index of the sidebar higher so that
-      the charts are not showing over the sidebar 
-      on small screens
-    */
+   
     z-index: 12 !important;
   }
   
-  
-  /* ---------- MAIN ---------- */
   
   .main-container {
     grid-area: main;

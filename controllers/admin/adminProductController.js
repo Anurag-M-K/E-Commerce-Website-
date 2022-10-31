@@ -1,9 +1,9 @@
-// const { addProduct } = require('../../models/productHelpers');
-// const productHelper = require('../../models/productHelpers')
-// const productadding  = require('../../models/productHelpers') 
+
 const productHelper = require('../../models/productHelpers')
 const category = require('../../models/categoryHelper')
-const Brand = require('../../models/brandHelpers')
+const Brand = require('../../models/brandHelpers');
+const categoryHelper = require('../../models/categoryHelper');
+const adminHelper = require('../../models/helpers/admin-helper');
 
  //product adding form
 
@@ -11,12 +11,9 @@ const productForm = (req, res) => {
     res.render("admin/addProduct",{admin:true,user:false});
   };
 
-
-
   //multer stert
 
   const productAdding = (req,res)=>{
-    console.log("Checking");
     console.log(req.body);
     console.log(req.files);
     const {
@@ -37,11 +34,9 @@ const productForm = (req, res) => {
         
     }).then((response)=>{
         console.log(req.file)
-        
         res.redirect('/admin/product')
     })
 } 
-
 
 const productPage = (req,res)=>{
     productHelper.getAllProducts().then((products)=>{
@@ -64,15 +59,6 @@ const productDelete = (req,res)=>{
 }
 
 
-//edit product
-
-const editingProduct = async(req,res)=>{
-   
-    await productHelper.getAllProducts(req.query.id).then((products)=>{
-        
-        res.render("admin/editProduct",{products,admin:true,user:false,products})
-    })
-}
 
 
 
@@ -86,7 +72,7 @@ const productUpdateController = (req,res)=>{
     let newImageId = req.file.filename
     productHelper.editProduct(id,newProductData,newImageId).then(()=>{
         productHelper.getAllProducts().then((products)=>{
-            res.render('admin/adminProductManage',{admin:true,products})
+            res.redirect('admin/product',{admin:true,products})
         })
     })
 }
@@ -95,7 +81,7 @@ const productUpdateController = (req,res)=>{
 const adminAddProductPage = (req,res)=>{
     category.getAllCategories().then((categoryDetails)=>{
         Brand.getAllBrands().then((brandDetails)=>{
-            res.render('admin/adminProductManage',{admin:true,categoryDetails,brandDetails})
+            res.redirect('admin/product',{admin:true,categoryDetails,brandDetails})
         })
     })
 }
@@ -103,28 +89,49 @@ const adminAddProductPage = (req,res)=>{
 
 
 const updateProductDetails = async(req,res)=>{
-    let productId = req.query.id
-    let product = await productHelper.showOneProduct(productId)
+    
+        let productId = req.query.id;
+        let product = await productHelper.showOneProduct(productId);
+        category.getAllCategories().then((categoryDetails)=>{
+            Brand.getAllBrands().then((brandDetails)=>{
+                res.render('admin/editProduct',{
+                    admin:true,
+                    categoryDetails,
+                    brandDetails,product
+                })
+            })
 
-    category.getAllCategories().then((categoryDetails)=>{
-        Brand.getAllBrands().then((brandDetails)=>{
-            res.render('admin/editProduct',{admin:true,user:false,categoryDetails,brandDetails,product})
         })
-    }) 
     
 }
 
-const adminAddNewProductAction = (req,res)=>{
-    let id = req.body.id;
-    let newProductData = req.body
-    let newImageId = req.file.filename
-    productHelper.editProduct(id,newProductData, newImageId).then(()=>{
-        productHelper.getAllProducts().then((product)=>{
-            res.render('admin/adminProductManage',{admin:true,product})
+
+
+
+
+
+
+
+
+
+
+const updateProductDetailsAction = (req,res)=>{
+
+        let id = req.body.id;
+        let newProductData = req.body;
+        let newImageId = req.file.filename;
+        productHelper.updateProductDetails(id,newProductData,newImageId).then(()=>{
+            productHelper.getAllProducts().then((products)=>{
+                res.redirect('admin/product', {
+                    admin:true,products
+                })
+            })
         })
-    })
     
 }
+
+
+
 
 
   module.exports = {
@@ -136,15 +143,16 @@ const adminAddNewProductAction = (req,res)=>{
     
     productDelete,
 
-    editingProduct,
+  
 
     productUpdateController,
 
     adminAddProductPage,
 
-    
-
     updateProductDetails,
 
-    adminAddNewProductAction
+    updateProductDetailsAction
+
+    
+  
   }
