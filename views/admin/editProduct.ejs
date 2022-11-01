@@ -9,7 +9,7 @@
         <div class="row pb-5">
             <form action="/admin/updateProductDetails" method="post" enctype="multipart/form-data">
 
-                <input type="text" class="form-input" name="id" value="<%= product._id %>">
+                <input type="text" class="form-input" disabled name="id" value="<%= product._id %>">
            
                 <div class="d-flex pe-3">
                     <div class="input-group mb-3 pe-3 w-50">
@@ -74,7 +74,7 @@
             
 
                 <div class="input-group">
-                    <input type="file" class="form-control"  name="productImage" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" >
+                    <input type="file" class="form-control"  name="productImage" id="inputImg"  aria-describedby="inputGroupFileAddon04" aria-label="Upload" >
                     <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
                 </div>
                 <div class="d-felx justify-content-center mt-3">
@@ -90,3 +90,5 @@
     </div>
 </section>
 </section>
+
+
