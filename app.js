@@ -6,7 +6,7 @@ const adminRouter = require('./routes/admin')
 const usersRouter = require('./routes/users')
 const path = require('path')
 const cookieParser = require('cookie-parser')
-const sessions = require('express-session')
+const session = require('express-session')
 const db = require('./config/connection')
 const logger = require('morgan')
 const admin=require("./routes/admin")
@@ -27,7 +27,7 @@ app.set('layout','layouts/layout')
 
 
 app.use(logger('dev'))
-app.use(sessions({
+app.use(session({
     secret:'fhihiuher98734539845hwefhjkfn',
     saveUninitialized:true,
     cookie:{maxAge:60000},
@@ -53,14 +53,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.get('',(req,res)=>{
-    if(req.session.user){
-        res.render('admin/admin-panel')
-    }else{
-        res.render('admin/admin-login')
-    }
-})
-
 
 
 db.connect((err)=>{
@@ -68,16 +60,6 @@ db.connect((err)=>{
     else console.log("database connected successfully")
 })
 
-
-
-
-//mail sender
-
-const userSignupBcrypt = (req,res)=>{
-    userHelpers.doSignup(req.body).then((response)=>{
-        res.render("users/userHome",{user:true,admin:false})
-    })
-}
 
 
 

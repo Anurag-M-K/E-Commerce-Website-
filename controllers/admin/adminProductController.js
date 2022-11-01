@@ -115,7 +115,7 @@ const updateProductDetailsAction = (req,res)=>{
         let id = req.body.id;
         let newProductData = req.body;
         let newImageId = req.file.filename;
-        productHelper.updateProductDetails(id,newProductData,newImageId).then(()=>{
+        productHelper.updateProdzuctDetails(id,newProductData,newImageId).then(()=>{
             productHelper.getAllProducts().then((products)=>{
                 res.render('admin/adminProductManage',{
                     

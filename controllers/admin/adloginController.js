@@ -1,17 +1,12 @@
-const adminHelper = require("../../models/helpers/admin-helper");
+
 const adminLogin = require("../../models/helpers/admin-helper");
-const userHelper = require("../../models/helpers/user-helper");
-const deleteCategory = require("../../models/categoryHelper");
-const categoryHelper = require("../../models/categoryHelper");
-const brandHelpers = require("../../models/brandHelpers");
-const productHelpers = require("../../models/productHelpers");
+
 
 
 
 
 const loginview = (req, res) => {
   res.render("../views/admin/admin-login", { admin: true, user: false });
-  // res.render('../views/admin/index')
 };
 
 const adminLoginAction = (req, res) => {

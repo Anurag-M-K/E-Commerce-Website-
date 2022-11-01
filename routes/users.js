@@ -5,8 +5,8 @@ const userDoLogin = require('../models/helpers/user-helper')
 const nodemailer = require("nodemailer")
 
 
-
-router.get('/',usersController.usersLog)
+router.get("/", usersController.userHomePage);
+// router.get('/',usersController.usersLog)
 router.post('/signup',usersController.userSignup)
 router.get('/usersLogin',usersController.userLogin)
 router.get("/header/usersignup",usersController.signupFromHome)

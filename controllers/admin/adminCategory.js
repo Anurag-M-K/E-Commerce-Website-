@@ -7,7 +7,7 @@ const catogoryPageController = (req, res) => {
     categoryHelper.getAllCategories().then((Categories) => {
       console.log("done", Categories);
       res.render("admin/adminCategory", { Categories, admin: true, user: false });
-    });
+    });z
   };
 
   const addCategoryController = (req, res) => {

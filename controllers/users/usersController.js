@@ -17,12 +17,15 @@ let mailTransporter = nodemailer.createTransport({
 const OTP = `${Math.floor(1000+ Math.random() * 9000)}`;
 
 
-const usersLog = (req,res)=>{
-    res.render('../views/users/usersLogin')
+// const usersLog = (req,res)=>{
+//     res.render('/users/usersLogin',{user:true,admin:false})
+// }
+
+
+
+const userHomePage = (req,res)=>{
+    res.render('users/userHome',{user:true,admin:false})
 }
-
-
-
 
 // for send mail 
 
@@ -80,9 +83,7 @@ const userSignup = (req,res)=>{
     }
 
 
-const userHomePage = (req,res)=>{
-    res.render('users/userHome',{user:true,admin:false})
-}
+
 
 const loginFromHome = (req,res)=>{
     res.render('users/usersLogin',{user:true,admin:false})
@@ -124,8 +125,6 @@ const userSessionController = (req,res)=>{
 //
 const userSignupBcrypt = (req,res)=>{
     userHelpers.doSignup(req.body).then((response)=>{
-        req.session.loggedIn = true
-        req.session.user = response.user
         res.render("users/userHome",{user:true,admin:false})
     })
 }
@@ -159,7 +158,7 @@ const checkOtp = (req,res)=>{
 
 
 module.exports = {
-    usersLog,
+
     userSignup,
     userHomePage,
     loginFromHome,
