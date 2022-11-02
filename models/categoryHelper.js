@@ -11,7 +11,6 @@ module.exports = {
 getAllCategories:()=>{
     return new Promise(async(resolve,reject)=>{
         let Categories = await db.get().collection(collection.CATEGORIES_COLLECTION).find().toArray()
-        console.log("data",Categories);
         resolve(Categories)
     })
 },
@@ -27,7 +26,6 @@ deleteCategory:(id)=>{
 
 editCategory:(catId,Categories)=>{
     return new Promise(async(resolve,reject)=>{
-        console.log(Categories)
         db.get().collection(collection.CATEGORIES_COLLECTION).updateOne({_id:ObjectId(catId)},{
             $set:{
             category:Categories._category

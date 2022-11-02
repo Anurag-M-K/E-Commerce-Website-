@@ -27,13 +27,11 @@ module.exports={
             else
             {
               
-              console.log('password wrong')
               resolve({status:false})
             }
           })
         }
         else{
-          console.log('user not found')
           resolve({status:false})
         }
       })

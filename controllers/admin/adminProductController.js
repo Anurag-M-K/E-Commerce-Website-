@@ -30,7 +30,7 @@ const productForm = (req, res) => {
         Quantity
         
     }).then((response)=>{
-        console.log(req.file)
+        
         res.redirect('/admin/product')
     })
 } 
@@ -61,18 +61,6 @@ const productDelete = (req,res)=>{
 
 
 
-//product update button to update
-
-// const productUpdateController = (req,res)=>{
-//     let id = req.body.id;
-//     let newProductData = req.body
-//     let newImageId = req.file.filename
-//     productHelper.updateProductDetails(id,newProductData,newImageId).then(()=>{
-//         productHelper.getAllProducts().then((products)=>{
-//             res.redirect('admin/product',{admin:true,products})
-//         })
-//     })
-// }
 
 
 const adminAddProductPage = (req,res)=>{
@@ -86,7 +74,6 @@ const adminAddProductPage = (req,res)=>{
 
 
 const updateProductDetails = async(req,res)=>{
-    console.log(req.query.id);
     
         let productId = req.query.id;
         let product = await productHelper.getProductDetails(productId);   
@@ -110,12 +97,11 @@ const updateProductDetails = async(req,res)=>{
 
 
 const updateProductDetailsAction = (req,res)=>{
-    console.log("id",req.body);
 
         let id = req.body.id;
         let newProductData = req.body;
         let newImageId = req.file.filename;
-        productHelper.updateProdzuctDetails(id,newProductData,newImageId).then(()=>{
+        productHelper.updateProductDetails(id,newProductData,newImageId).then(()=>{
             productHelper.getAllProducts().then((products)=>{
                 res.render('admin/adminProductManage',{
                     

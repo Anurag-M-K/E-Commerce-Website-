@@ -1,6 +1,7 @@
 const userHelpers = require('../../models/helpers/user-helper')
 const nodemailer = require("nodemailer")
-
+const session =  require('express-session');
+const productHelpers = require('../../models/productHelpers');
 
 
 
@@ -17,14 +18,15 @@ let mailTransporter = nodemailer.createTransport({
 const OTP = `${Math.floor(1000+ Math.random() * 9000)}`;
 
 
-// const usersLog = (req,res)=>{
-//     res.render('/users/usersLogin',{user:true,admin:false})
-// }
 
 
 
 const userHomePage = (req,res)=>{
-    res.render('users/userHome',{user:true,admin:false})
+    productHelpers.getAllProducts().then((products)=>{
+        console.log(products)
+    res.render('users/userHome',{user:true,admin:false,products})
+    })
+    
 }
 
 // for send mail 
@@ -57,25 +59,6 @@ const userSignup = (req,res)=>{
     })
 
    
-    /////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     userHelpers.doSignup(req.body).then((response)=>{
         console.log(response)
         res.render('users/usersSignup',{user:true,admin:false})
@@ -85,47 +68,47 @@ const userSignup = (req,res)=>{
 
 
 
-const loginFromHome = (req,res)=>{
-    res.render('users/usersLogin',{user:true,admin:false})
-}
 
 // register click to user signup
 
 const signupFromHome = (req,res)=>{
-    res.render("users/usersSignup",{user:true,admin:false})
+    res.render("users/usersSignup",{user:false,admin:false})
 }
-
-const userLogin = (req,res)=>{
-    res.render('./users/usersLogin',{usre:true,admin:false})
-}
-
-
-
-const toUserHome = (req,res)=>{
-    let user = req.session.user
-    console.log(user+ "somebody login");
-    res.render('users/userHome',{user:true,admin:false})
-}
-
 
 //session controller
 
 const userSessionController = (req,res)=>{
+    let user = req.session.user
     userHelpers.userDoLogin(req.body).then((response)=>{
-        if(response.status){
-            req.session.loggedIn=true
-            req.session.user = response.user
-            res.render('users/userHome',{user:true,admin:false,response})
-        }else{
-            res.render('users/usersLogin')
-        }
-    })
-}
+    if(response.status){
+        req.session.loggedIn = true
+        req.session.user = response.user
+        res.render('users/userHome',{user:true,admin:false,user})
+    }else{
+        res.render('users/usersLogin',{admin:false,user:false,user})
+    }          
+   })
+    }
 
-//
+    const logout = (req,res)=>{
+        req.session.destroy((err)=>{
+            if(err){
+                console.log('error')
+                res.send("Error")
+            }else{
+         
+            res.render('users/userHome',{user:true,admin:false,})
+        }
+      })
+    }
+
+
+
+
+
 const userSignupBcrypt = (req,res)=>{
     userHelpers.doSignup(req.body).then((response)=>{
-        res.render("users/userHome",{user:true,admin:false})
+        res.render("users/userHome",{admin:false})
     })
 }
 
@@ -156,16 +139,14 @@ const checkOtp = (req,res)=>{
 
 
 
-
 module.exports = {
 
     userSignup,
     userHomePage,
-    loginFromHome,
     signupFromHome,
-    userLogin,
-    toUserHome,
     userSessionController,
     userSignupBcrypt,
-    checkOtp
+    checkOtp,
+    logout 
+  
     }

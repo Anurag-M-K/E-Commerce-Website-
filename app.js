@@ -11,6 +11,7 @@ const db = require('./config/connection')
 const logger = require('morgan')
 const admin=require("./routes/admin")
 
+const MongoDBSession = require('connect-mongodb-session')(session);
 
 
 
@@ -26,13 +27,8 @@ app.set('views',path.join(__dirname,'views'))
 app.set('layout','layouts/layout')
 
 
-app.use(logger('dev'))
-app.use(session({
-    secret:'fhihiuher98734539845hwefhjkfn',
-    saveUninitialized:true,
-    cookie:{maxAge:60000},
-    resave:false
-}))
+// app.use(logger('dev'))
+
 
 
 app.use(express.json())
@@ -43,8 +39,13 @@ app.use('/img',express.static(path.join(__dirname + 'public/img')))
 app.use('/js',express.static(path.join(__dirname + 'public/js')))
 app.use(express.urlencoded({extended:true}))
 app.use(express.static(path.join(__dirname,'public')))
+app.use(session({
+    secret:'fhihiuher98734539845hwefhjkfn',
+    saveUninitialized:true,
+    cookie:{maxAge:6000000},
+    resave:false
+}))
 
-app.use(cookieParser())
 app.use(function (req, res, next) {
     res.set(
         "Cache-Control",
@@ -54,7 +55,7 @@ app.use(function (req, res, next) {
 });
 
 
-
+app.use(cookieParser())
 db.connect((err)=>{
     if(err) console.log('connection error'+err)
     else console.log("database connected successfully")

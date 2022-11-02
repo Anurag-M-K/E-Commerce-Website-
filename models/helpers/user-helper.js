@@ -3,7 +3,8 @@ const { ObjectId, Collection } = require('mongodb');
 const { resolve } = require('path');
 const db = require('../../config/connection')
 const bcrypt = require('bcrypt')
-const collection = require('../../config/collection')
+const collection = require('../../config/collection');
+const { log } = require('console');
 
 module.exports = {
     insertUserCredentials : (verified,Name,Email,Password)=>{
@@ -23,8 +24,10 @@ module.exports = {
         return new Promise (async(resolve, reject)=>{
             let response = {}
             let user = await db.get().collection(collection.USER_COLLECTION).findOne({Name:userdata.username})
+            
             if(user){
                 if(user.verified==1)
+            
                 {
                 bcrypt.compare(userdata.Password,user.Password).then((status)=>{
                     if(status){
@@ -32,20 +35,19 @@ module.exports = {
                         response.status = true
                         resolve(response)
                     }else{
-                        console.log('password is wrong')
                         resolve({status:false})
                     }
                 })
 
             }else{
-                console.log('there is no user')
                 resolve({status:false})
             }
         }else{
             resolve({status:false})
         }
-    });
+    });  
     },
+ 
 
     updateVerified : (userId)=>{    
         return new Promise((resolve,reject)=>{
