@@ -1,6 +1,6 @@
 const { response } = require('express');
-const { ObjectId, Collection } = require('mongodb');
 const { resolve } = require('path');
+const ObjectId = require('mongodb').ObjectID
 const db = require('../../config/connection')
 const bcrypt = require('bcrypt')
 const collection = require('../../config/collection');
@@ -68,5 +68,23 @@ module.exports = {
                 resolve(data)
             })
         })
+    },
+    addToCart:(proId,userId)=>{
+        return new Promise(async(resolve,reject)=>{
+            let userCart = await db.get().collection(collection.CART_COLLECTION).findOne({user:ObjectId(userId)})
+            if(userCart){
+                
+            }else{
+                let cartObj = {
+                    user:ObjectId(userId),
+                    productS : [ObjectId(proId)]
+                }
+                db.get().collection(collection.CART_COLLECTION).insertOne(cartObj).then((response)=>{
+                    
+                    resolve()
+                })
+            }
+        })
     }
+
 }

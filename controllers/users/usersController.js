@@ -2,6 +2,7 @@ const userHelpers = require('../../models/helpers/user-helper')
 const nodemailer = require("nodemailer")
 const session =  require('express-session');
 const productHelpers = require('../../models/productHelpers');
+const bannerHelper = require('../../models/bannerHelper');
 
 
 
@@ -23,8 +24,10 @@ const OTP = `${Math.floor(1000+ Math.random() * 9000)}`;
 
 const userHomePage = (req,res)=>{
     productHelpers.getAllProducts().then((products)=>{
-        console.log(products)
-    res.render('users/userHome',{user:true,admin:false,products})
+        bannerHelper.showBanner().then((banners)=>{
+            console.log(products)
+            res.render('users/userHome',{user:true,admin:false,products,banners})
+        })
     })
     
 }

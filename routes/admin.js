@@ -7,7 +7,7 @@ const adminProductController = require('../controllers/admin/adminProductControl
 const adminBrandController = require('../controllers/admin/adminBrandController')
 const adminUserController = require('../controllers/admin/adminUserController')
 const multer = require('multer');
-
+const adminBannerController = require('../controllers/admin/adminBannerController')
 
 
 
@@ -100,6 +100,10 @@ router.post('/adminAddNewProduct',upload.single('productImage'),adminProductCont
 router.get('/showEditProductPage',adminProductController.updateProductDetails)
 
 
+//**********************************************************Admin Banner***************************************************************** */
+router.get('/adminBanner',adminBannerController.showBannerPage)
+router.post('/addNewBanner',upload.single("bannerImage"),adminBannerController.addBanner)
+router.delete('/deleteBanner',adminBannerController.deleteBanner)
 
 
 

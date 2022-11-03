@@ -287,7 +287,7 @@
 							<a class="nav-link" href="about.html">About Us</a>
 						</li>
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="product.html">New Arrivals</a>
+							<a class="nav-link" href="/users/checkOut">Check Out</a>
 						</li>
 						<li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -314,84 +314,32 @@
 	</div>
 	<!-- //navigation -->
 
+
+
+
 	<!-- banner -->
-	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-		<!-- Indicators-->
-		<ol class="carousel-indicators">
-			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-		</ol>
+	<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
 		<div class="carousel-inner">
-			<div class="carousel-item item1 active">
-				<div class="container">
-					<div class="w3l-space-banner">
-						<div class="carousel-caption p-lg-5 p-sm-4 p-3">
-							<p>Get flat
-								<span>10%</span> Cashback</p>
-							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">The
-								<span>Big</span>
-								Sale
-							</h3>
-							<a class="button2" href="product.html">Shop Now </a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="carousel-item item2">
-				<div class="container">
-					<div class="w3l-space-banner">
-						<div class="carousel-caption p-lg-5 p-sm-4 p-3">
-							<p>advanced
-								<span>Wireless</span> earbuds</p>
-							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">Best
-								<span>Headphone</span>
-							</h3>
-							<a class="button2" href="product.html">Shop Now </a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="carousel-item item3">
-				<div class="container">
-					<div class="w3l-space-banner">
-						<div class="carousel-caption p-lg-5 p-sm-4 p-3">
-							<p>Get flat
-								<span>10%</span> Cashback</p>
-							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">New
-								<span>Standard</span>
-							</h3>
-							<a class="button2" href="product.html">Shop Now </a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="carousel-item item4">
-				<div class="container">
-					<div class="w3l-space-banner">
-						<div class="carousel-caption p-lg-5 p-sm-4 p-3">
-							<p>Get Now
-								<span>40%</span> Discount</p>
-							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">Today
-								<span>Discount</span>
-							</h3>
-							<a class="button2" href="product.html">Shop Now </a>
-						</div>
-					</div>
-				</div>
-			</div>
+			<% for(var i=0; i<banners.length;i++) { %>
+		  <div class="carousel-item active">
+			<img src="/images/<%= banners[i].bannerImage %>" style="width: 100%; height:550px;" class="d-block w-100" alt="...">
+		  </div>
+		  <% } %>
 		</div>
-		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			<span class="sr-only">Previous</span>
-		</a>
-		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
-	</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+		  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		  <span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+		  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		  <span class="visually-hidden">Next</span>
+		</button>
+	  </div>
 	<!-- //banner -->
+
+
+
+
 
 	<!-- top Products -->
 	<div class="ads-grid py-sm-5 py-4">
@@ -402,7 +350,7 @@
 				<span>N</span>ew
 				<span>P</span>roducts</h3>
 			<!-- //tittle heading -->
-			<div class="row">
+			<div class="row" >
 				<!-- product left -->
 				<div class="agileinfo-ads-display col-lg-9">
 					<div class="wrapper" style="max-width: 822px;
@@ -412,9 +360,10 @@
           background-color: #ecf0f3;
           /* border-radius: 15px; */
           box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;">
+		  <h3 class="heading-tittle text-center font-italic">Special Offer on </h3>
 						<!-- first section -->
 						<div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
-							<h3 class="heading-tittle text-center font-italic">New Brand Mobiles</h3>
+							
 							<div class="row">
 								<div class="col-md-4 product-men mt-5">
 									<div class="men-pro-item simpleCart_shelfItem">
@@ -435,17 +384,21 @@
 
 										<div class="item-info-product text-center border-top mt-4">
 											
-                      
+                      <a href="/users/singlePage">
                       <div class="container" style="width: 590px;">
-                        <div class="row">
+                        <div class="row" style="    margin-left: -6rem;
+						margin-top: -5rem;">
                           <% for (var i= 0 ; i<products.length ;  i++) { %>
-                          <div class="col-md-6">
-                            <div class="card" style="width:15rem; height:20rem; margin-right: 2rem;">
-								<img src="/images/<%= products[i].Pitcure %>" style="width:120px ; height:120px;" alt="">
+                          <div class="col-md-4">
+                            <div class="card" style="    width: 14rem;
+							height: 20rem;
+							margin-right: 2rem;
+							border: 2px solid black;">
+								<img src="/images/<%= products[i].Pitcure %>" style="width:120px ; height:120px;    margin-left: 2rem;" alt="">
                              <div class="card-body">
-                              <h5 class="card-title"></h5>
-                              <p class="card-text"></p>
-                              <a href="" class="btn btn-primary">Add to cart</a>
+                              <h5 class="card-title"><%= products[i].productName %></h5>
+                              <p class="card-text"><%= products[i].Price %> </p>
+                              <a href="/add-to-cart/?id=<%= products[i]._id %>" class="btn btn-primary">Add to cart</a>
                              </div>
                             </div>
                           </div>
@@ -454,7 +407,7 @@
                           <% } %>
                         </div>
                       </div>
-
+					</a>
 
 
 
