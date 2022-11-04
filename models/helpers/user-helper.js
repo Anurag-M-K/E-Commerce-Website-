@@ -26,20 +26,25 @@ module.exports = {
             let user = await db.get().collection(collection.USER_COLLECTION).findOne({Name:userdata.username})
             
             if(user){
+                console.log("user found");
                 if(user.verified==1)
             
                 {
+                    console.log("verifieed");
                 bcrypt.compare(userdata.Password,user.Password).then((status)=>{
                     if(status){
                         response.user = user
                         response.status = true
+                        console.log("Success");
                         resolve(response)
                     }else{
+                        console.log("Fail");
                         resolve({status:false})
                     }
                 })
 
             }else{
+                console.log("user not found");
                 resolve({status:false})
             }
         }else{
@@ -57,15 +62,6 @@ module.exports = {
                 }
             }).then((response)=>{
                 resolve(response)
-            })
-        })
-    },
-
-    doSignup:(signupData)=>{
-        return new Promise(async(resolve,reject)=>{
-            signupData.Password = await bcrypt.hash(signupData.Password,10)
-            db.get().collection('user').insertOne(signupData).then((data)=>{
-                resolve(data)
             })
         })
     },

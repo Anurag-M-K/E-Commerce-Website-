@@ -1,7 +1,7 @@
 const userHelper = require("../../models/helpers/user-helper")
 
 const cart = (req,res)=>{
-    console.log("cart")
+   
     res.render('users/cart',{user:true,admin:false})
 }
 

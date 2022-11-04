@@ -16869,25 +16869,32 @@ color: #b3b3b3;
 						</li>
 						<li class="text-center border-right text-white">
       
+              <% if(userData) { %>
 
-
-                <% if (user) { %>
                 <div class="btn-group">
-                  <button type="button"  type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Account
-                     <%= user.Name %>
+                  
+                  <button type="button"  type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><%= userData.Name %>
                   </button>
-                   
-
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/logout">Log out</a></li><br>
-                  <li><a class="dropdown-item" href="/header/usersignup">Register</a></li><br>
-
+                    <li><a class="dropdown-item" href="/logout">Logout</a></li><br> 
                   </ul>
                 </div>
-                <% } else { %>
-                  <li><a class="dropdown-item" href="/header/usersignup">Register</a></li><br>
-                  <li><a class="dropdown-item" href="/users/userslogin">Login</a></li><br>
-               <% } %>
+                    <% } else { %>
+                      <div class="btn-group">
+                  
+                        <button type="button"  type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Account
+                        </button>
+                        <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="/usersLogin">Log IN</a></li><br>
+                        <li><a class="dropdown-item" href="/header/usersignup">Register</a></li><br>
+                      </ul>
+                    </div>
+                        <% } %>
+                  
+                
+                    
+                  
+             
                
                   <a href="/users/cart"><li><span class="btn btn-dark"  style=" margin-left: 36px;"><i class="fas fa-shopping-cart ml-1"></i>Cart</span></li></a>
 

@@ -9,6 +9,9 @@ const userSinglePage = require('../controllers/users/userSinglePage')
 
 
 router.get("/", usersController.userHomePage);
+router.post('/login',usersController.userSessionController)
+
+router.get('/userslogin',usersController.userLogin)
 // router.get('/',usersController.usersLog)
 router.post('/signup',usersController.userSignup)
 router.get("/header/usersignup",usersController.signupFromHome)
