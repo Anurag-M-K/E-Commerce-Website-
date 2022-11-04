@@ -1,7 +1,16 @@
+const userDisplay = require('../../models/userDisplay')
 
-const single = (req,res)=>{
-    res.render('users/singlePage',{user:true,admin:false})
+const single = async(req,res)=>{
+    let productId = req.query.id
+    let product = await userDisplay.viewProductDetails(productId)
+   
+    res.render('users/singlePage',{user:true,admin:false,product})
 }
+
+
+
+
+
 
 module.exports = {
     single

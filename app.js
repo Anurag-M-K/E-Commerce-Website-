@@ -21,6 +21,8 @@ const MongoDBSession = require('connect-mongodb-session')(session);
 
 
 
+
+
 app.set('view engine','ejs')
 app.set('views',__dirname + '/views')
 app.set('views',path.join(__dirname,'views'))
@@ -29,10 +31,11 @@ app.set('layout','layouts/layout')
 
 // app.use(logger('dev'))
 
-
+app.use('/',admin);
 
 app.use(express.json())
 app.use(expressLayouts)
+
 app.use(express.static('public'))
 app.use('/css',express.static(path.join(__dirname + 'public/css')))
 app.use('/img',express.static(path.join(__dirname + 'public/img')))
