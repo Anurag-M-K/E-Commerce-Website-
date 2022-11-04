@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const adloginController = require("../controllers/admin/adloginController");
 const adminCategory = require('../controllers/admin/adminCategory')
+const usersController = require("../controllers/users/usersController");
 const adminProductController = require('../controllers/admin/adminProductController')
 const adminBrandController = require('../controllers/admin/adminBrandController')
 const adminUserController = require('../controllers/admin/adminUserController')
