@@ -82,7 +82,7 @@ const updateProductDetails = async(req,res)=>{
             Brand.getAllBrands().then((brandDetails)=>{
           
                 res.render('admin/editProduct',{
-                    admin:true,
+                    admin:true,user:false,
                     categoryDetails,
                     brandDetails,product
                 })

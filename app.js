@@ -15,7 +15,7 @@ const MongoDBSession = require('connect-mongodb-session')(session);
 
 
 
-app.use('/',admin);
+
 
 
 

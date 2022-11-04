@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer")
 const session =  require('express-session');
 const productHelpers = require('../../models/productHelpers');
 const bannerHelper = require('../../models/bannerHelper');
-
+const categoryHelper = require('../../models/categoryHelper')
 
 
 //node mailer
@@ -25,8 +25,12 @@ const OTP = `${Math.floor(1000+ Math.random() * 9000)}`;
 const userHomePage = (req,res)=>{
     productHelpers.getAllProducts().then((products)=>{
         bannerHelper.showBanner().then((banners)=>{
+        
             console.log(products)
-            res.render('users/userHome',{user:true,admin:false,products,banners})
+        categoryHelper.getAllCategories().then((CategoryDetails)=>{
+            res.render('users/userHome',{user:true,admin:false,products,banners,CategoryDetails})
+        })
+          
         })
     })
     
@@ -58,7 +62,7 @@ const userSignup = (req,res)=>{
     })
     userHelpers.insertUserCredentials(verified,Name,Email,Password).then((response)=>{
         userId = response.insertedId
-        res.render('users/otpVerificationPage',{admin:false,user:true})
+        res.render('users/otpVerificationPage',{admin:false,user:false})
     })
 
    
@@ -122,8 +126,8 @@ const checkOtp = (req,res)=>{
     if(OTP == req.body.otpSend){
         userHelpers.updateVerified(userId).then((response)=>{
             console.log('success')
-
-            res.render("users/userHome",{user:true,admin:false})
+console.log(OTP)
+            res.redirect('/')
         })
     }
     else{

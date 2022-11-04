@@ -384,7 +384,7 @@
 
 										<div class="item-info-product text-center border-top mt-4">
 											
-                      <a href="/users/singlePage">
+                      
                       <div class="container" style="width: 590px;">
                         <div class="row" style="    margin-left: -6rem;
 						margin-top: -5rem;">
@@ -398,6 +398,7 @@
                              <div class="card-body">
                               <h5 class="card-title"><%= products[i].productName %></h5>
                               <p class="card-text"><%= products[i].Price %> </p>
+							  <a href="/users/singlePage"><button>view</button></a>
                               <a href="/add-to-cart/?id=<%= products[i]._id %>" class="btn btn-primary">Add to cart</a>
                              </div>
                             </div>
@@ -407,7 +408,7 @@
                           <% } %>
                         </div>
                       </div>
-					</a>
+					
 
 
 
