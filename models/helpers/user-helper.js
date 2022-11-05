@@ -94,33 +94,33 @@ module.exports = {
         })
     },
     getCartProducts : (userId)=>{
-        return new Promise((resolve,reject)=>{
-            const cartItems = db.get().collection(collection.CART_COLLECTION).aggregate([
+        return new Promise(async(resolve,reject)=>{
+            const cartItems = await db.get().collection(collection.CART_COLLECTION).aggregate([
                 {
                     $match : {user:ObjectId(userId)}
+                },
+               
+                {
+                    $unwind : "$products"
                 },
                 {
                     $lookup: {
                         from :collection.PRODUCT_COLLECTION,
-                        let :{prodList:'$products'},
-                        pipeline :[
-                            {
-                                $match:{
-                                    $expr:{
-                                        $in:['$_id','$$prodList']
-                                    }
-                                }
-                            }
-                        ],
-                        as:'cartItems'
+                        localField : 'products',
+                        foreignField : "_id",
+                        as : "products"
                     }
                     
                 }
             ]).toArray()
             
+            
+           
+
             resolve(cartItems)
-        })
+          
         
+        })
        
     }
 

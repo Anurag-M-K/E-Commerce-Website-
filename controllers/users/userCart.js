@@ -17,7 +17,7 @@ const cart =  async(req,res)=>{
     let userData = req.session.user;
     if(req.session.loggedIn){
         let products =await userHelper.getCartProducts(req.session.user._id)
-    console.log("from cart : ", products);
+    console.log("products ", products);
    
      res.render('users/cart',{user:true,admin:false,userData,products})
     }else{
