@@ -11,7 +11,7 @@ const userLogin = (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/");
   } else {
-    res.render("users/usersLogin", { user: true, admin: false, userData });
+    res.render("users/usersLogin", { user: false, admin: false, userData });
   }
 };
 
@@ -28,30 +28,31 @@ let mailTransporter = nodemailer.createTransport({
 const OTP = `${Math.floor(1000 + Math.random() * 9000)}`;
 
 const userHomePage = (req, res) => {
+ 
   let userData = req.session.user;
 
   productHelpers.getAllProducts().then((products) => {
     bannerHelper.showBanner().then((banners) => {
-      categoryHelper.getAllCategories().then((CategoryDetails) => {
+      // categoryHelper.getAllCategories().then((CategoryDetails) => {
         res.render("users/userHome", {
           user: true,
           admin: false,
           products,
           banners,
-          CategoryDetails,
-          userData,
+          // CategoryDetails,
+          userData
         });
       });
     });
-  });
-};
+  }
+
 
 // for send mail
 
 const userSignup = (req, res) => {
   let verified = 0;
 
-  const { Name, Email, Password } = req.body;
+  const { Name, Email, Password ,Lname,Phone} = req.body;
   let mailDetails = {
     from: "anuragmk10@gmail.com",
     to: Email,
@@ -67,7 +68,7 @@ const userSignup = (req, res) => {
     }
   });
   userHelpers
-    .insertUserCredentials(verified, Name, Email, Password)
+    .insertUserCredentials(verified, Name, Email, Password,Lname,Phone)
     .then((response) => {
       userId = response.insertedId;
       res.render("users/otpVerificationPage", {
@@ -78,8 +79,10 @@ const userSignup = (req, res) => {
     });
 };
 
-// register click to user signup
 
+
+
+// register click to user signup
 const signupFromHome = (req, res) => {
   let userData = req.session.user;
   if (req.session.loggedIn) {
@@ -89,8 +92,10 @@ const signupFromHome = (req, res) => {
   }
 };
 
-//session controller
 
+
+
+//session controller
 const userSessionController = (req, res) => {
   let userData = req.session.user;
   console.log("Login Page");
@@ -100,17 +105,13 @@ const userSessionController = (req, res) => {
     if (response.status) {
       req.session.loggedIn = true;
       req.session.user = response.user;
-      console.log("vsdvs", userData);
+      
       bannerHelper.showBanner().then((banners) => {
         productHelpers.getAllProducts().then((products) => {
+          
             res.redirect('/')
-        //   res.render("users/userHome", {
-        //     user: true,
-        //     admin: false,
-        //     banners,
-        //     products,
-        //     userData,
-        //   });
+
+       
         });
       });
     } else {
@@ -118,6 +119,9 @@ const userSessionController = (req, res) => {
     }
   });
 };
+
+
+
 
 const logout = (req, res) => {
   req.session.destroy((err) => {
@@ -130,11 +134,20 @@ const logout = (req, res) => {
   });
 };
 
+
+
+
+
+
 const userSignupBcrypt = (req, res) => {
   userHelpers.doSignup(req.body).then((response) => {
     res.render("users/userHome", { admin: false });
   });
 };
+
+
+
+
 
 //nodemailer email sending
 const checkOtp = (req, res) => {

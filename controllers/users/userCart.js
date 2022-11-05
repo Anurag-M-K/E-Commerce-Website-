@@ -1,15 +1,32 @@
 const userHelper = require("../../models/helpers/user-helper")
 
-const cart = (req,res)=>{
-   
-    res.render('users/cart',{user:true,admin:false})
-}
+
+
+
+
 
 const addToCart = (req,res)=>{
-    userHelper.addToCart(req.params.id,req.session.user._id).then(()=>{
-        res.render('users/cart')
+    
+    userHelper.addToCart(req.params.id,req.session.user._id).then(()=>{  
+        res.redirect('/')
           })
 }
+
+
+const cart =  async(req,res)=>{
+    let userData = req.session.user;
+    if(req.session.loggedIn){
+        let products =await userHelper.getCartProducts(req.session.user._id)
+    console.log("from cart : ", products);
+   
+     res.render('users/cart',{user:true,admin:false,userData})
+    }else{
+        redirect('/userslogin')
+    }
+    
+ }
+
+
 
 
 module.exports = {

@@ -15,7 +15,7 @@ const MongoDBSession = require('connect-mongodb-session')(session);
 
 
 
-
+app.set('/',admin)
 
 
 
@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname,'public')))
 app.use(session({
     secret:'thisismysecretecode',
     saveUninitialized:true,
-    cookie:{maxAge:60000},
+    cookie:{maxAge:600000},
     resave:false
 }))
 

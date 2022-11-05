@@ -6,7 +6,7 @@ const adminLogin = require("../../models/helpers/admin-helper");
 
 
 const loginview = (req, res) => {
-  res.render("../views/admin/admin-login", { admin: true, user: false });
+  res.render("admin/admin-login", { admin: false, user: false });
 };
 
 const adminLoginAction = (req, res) => {

@@ -5,15 +5,18 @@ const db = require('../../config/connection')
 const bcrypt = require('bcrypt')
 const collection = require('../../config/collection');
 const { log } = require('console');
+const { ObjectID } = require('bson');
+
+
 
 module.exports = {
-    insertUserCredentials : (verified,Name,Email,Password)=>{
+    insertUserCredentials : (verified,Name,Email,Password,Lname,Phone)=>{
         return new Promise(async (resolve,reject)=>{
             Password = await bcrypt.hash(Password,10);
             console.log(Password);
             db.get()
             .collection(collection.USER_COLLECTION)
-            .insertOne({ verified,Name,Email,Password})
+            .insertOne({ verified,Name,Email,Password,Lname,Phone})
             .then((data)=>{
                 resolve(data);
             })
@@ -69,11 +72,19 @@ module.exports = {
         return new Promise(async(resolve,reject)=>{
             let userCart = await db.get().collection(collection.CART_COLLECTION).findOne({user:ObjectId(userId)})
             if(userCart){
+                db.get().collection(collection.CART_COLLECTION)
+                .updateOne({user:ObjectId(userId)},
+                {
+                    $push:{products:ObjectId(proId)}
+                }
+                ).then((response)=>{
+                    resolve()
+                })
                 
             }else{
                 let cartObj = {
                     user:ObjectId(userId),
-                    productS : [ObjectId(proId)]
+                    products : [ObjectId(proId)]
                 }
                 db.get().collection(collection.CART_COLLECTION).insertOne(cartObj).then((response)=>{
                     
@@ -81,6 +92,35 @@ module.exports = {
                 })
             }
         })
+    },
+    getCartProducts : (userId)=>{
+        return new Promise((resolve,reject)=>{
+            const cartItems = db.get().collection(collection.CART_COLLECTION).aggregate([
+                {
+                    $match : {user:ObjectId(userId)}
+                },
+                {
+                    $lookup: {
+                        from :collection.PRODUCT_COLLECTION,
+                        let :{prodList:'$products'},
+                        pipeline :[
+                            {
+                                $match:{
+                                    $expr:{
+                                        $in:['$_id','$$prodList']
+                                    }
+                                }
+                            }
+                        ],
+                        as:'cartItems'
+                    }
+                    
+                }
+            ]).toArray()
+            resolve(cartItems)
+        })
+        
+       
     }
 
 }

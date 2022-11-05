@@ -1,6 +1,8 @@
 
 const single = (req,res)=>{
-    res.render('users/singlePage',{user:true,admin:false})
+    let userData = req.session.user
+
+    res.render('users/singlePage',{user:true,admin:false,userData})
 }
 
 module.exports = {

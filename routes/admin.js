@@ -38,7 +38,7 @@ const upload = multer({
 //Multer End
 
 
-router.get("/admin", adloginController.loginview);
+router.get("/", adloginController.loginview);
 router.post("/home-admin", adloginController.adminLoginAction);
 
 
