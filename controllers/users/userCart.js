@@ -13,15 +13,19 @@ const addToCart = (req,res)=>{
 }
 
 
+
+
+
 const cart =  async(req,res)=>{
     let userData = req.session.user;
     if(req.session.loggedIn){
         let products =await userHelper.getCartProducts(req.session.user._id)
-    console.log("products ", products);
-   
-     res.render('users/cart',{user:true,admin:false,userData,products})
+    
+            cartCount = await userHelper.getCartCount(req.session.user._id)
+           
+     res.render('users/cart',{user:true,admin:false,userData,products,cartCount})
     }else{
-        res.render("users/usersLogin", { user: false, admin: false, userData });
+        res.render("users/usersLogin", { user: false, admin: false, userData});
     }
     
  }

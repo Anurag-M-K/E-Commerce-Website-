@@ -27,10 +27,13 @@ let mailTransporter = nodemailer.createTransport({
 
 const OTP = `${Math.floor(1000 + Math.random() * 9000)}`;
 
-const userHomePage = (req, res) => {
+const userHomePage = async(req, res) => {
  
   let userData = req.session.user;
-
+  let cartCount = null;
+  if(req.session.user){
+ cartCount = await userHelpers.getCartCount(req.session.user._id)
+  }
   productHelpers.getAllProducts().then((products) => {
     bannerHelper.showBanner().then((banners) => {
       // categoryHelper.getAllCategories().then((CategoryDetails) => {
@@ -40,7 +43,8 @@ const userHomePage = (req, res) => {
           products,
           banners,
           // CategoryDetails,
-          userData
+          userData,
+          cartCount
         });
       });
     });
