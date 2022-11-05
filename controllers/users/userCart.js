@@ -19,9 +19,9 @@ const cart =  async(req,res)=>{
         let products =await userHelper.getCartProducts(req.session.user._id)
     console.log("from cart : ", products);
    
-     res.render('users/cart',{user:true,admin:false,userData})
+     res.render('users/cart',{user:true,admin:false,userData,products})
     }else{
-        redirect('/userslogin')
+        res.render("users/usersLogin", { user: false, admin: false, userData });
     }
     
  }

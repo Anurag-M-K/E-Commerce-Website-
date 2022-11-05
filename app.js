@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
-const port = 8080;
 const adminRouter = require('./routes/admin')
 const usersRouter = require('./routes/users')
 const path = require('path')
@@ -10,7 +9,7 @@ const session = require('express-session')
 const db = require('./config/connection')
 const logger = require('morgan')
 const admin=require("./routes/admin")
-
+require('dotenv').config()
 const MongoDBSession = require('connect-mongodb-session')(session);
 
 
@@ -71,6 +70,6 @@ db.connect((err)=>{
 app.use('/',usersRouter)
 app.use('/admin',adminRouter)
 
-app.listen(port,()=>{
+app.listen(process.env.PORT,()=>{
     console.log("server started");
 })
