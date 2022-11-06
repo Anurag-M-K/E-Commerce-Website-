@@ -200,7 +200,8 @@
                               <h5 class="card-title"><%= products[i].productName %></h5>
                               <p class="card-text"><%= products[i].Price %> </p>
 							  <a href="/users/singlePage"><button>view</button></a>
-                              <a href="/add-to-cart/<%= products[i]._id %>" class="btn btn-primary">Add to cart</a>
+                              <!-- <a href="/add-to-cart/<%= products[i]._id %>" class="btn btn-primary">Add to cart</a> -->
+							  <button onclick="addToCart('<%= products[i]._id %>')"    class="btn btn-primary">Add to cart</button>
                              </div>
                             </div>
                           </div>
@@ -744,8 +745,31 @@
 		</div>
 		<!-- footer third section -->
 
-		
 
+
+
+<!-- 
+// function for add to cart ajax -->
+
+
+<script>
+		function addToCart(proId){
+		$.ajax({
+			url:'/add-to-cart/'+proId,
+			method:'get',
+			success:(response)=>{
+                if(response.status){
+                    let count = $('#cart-count').html()
+                    count = parseInt(count)+1
+                    $("#cart-count").html(count)
+                }
+				
+			}
+		})
+	}
+</script>
+
+		  
 
 </body>
 

@@ -1,14 +1,15 @@
-const userHelper = require("../../models/helpers/user-helper")
 
 
+const userHelper = require('../../models/userHelper/userCartHelper')
 
 
 
 
 const addToCart = (req,res)=>{
-    
+    console.log("api call");
     userHelper.addToCart(req.params.id,req.session.user._id).then(()=>{  
-        res.redirect('/')
+        // res.redirect('/')
+        res.json({status:true})
           })
 }
 

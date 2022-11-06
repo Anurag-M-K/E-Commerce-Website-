@@ -1,9 +1,11 @@
-const userHelpers = require("../../models/helpers/user-helper");
+const userHelper = require("../../models/helpers/user-helper");
 const nodemailer = require("nodemailer");
 const session = require("express-session");
 const productHelpers = require("../../models/productHelpers");
 const bannerHelper = require("../../models/bannerHelper");
 const categoryHelper = require("../../models/categoryHelper");
+const userHelpers = require('../../models/userHelper/userCartHelper')
+
 
 //user login
 const userLogin = (req, res) => {
@@ -104,7 +106,7 @@ const userSessionController = (req, res) => {
   let userData = req.session.user;
   console.log("Login Page");
 
-  userHelpers.userDoLogin(req.body).then((response) => {
+  userHelper.userDoLogin(req.body).then((response) => {
     console.log("vsvsv", response.status);
     if (response.status) {
       req.session.loggedIn = true;
@@ -144,7 +146,7 @@ const logout = (req, res) => {
 
 
 const userSignupBcrypt = (req, res) => {
-  userHelpers.doSignup(req.body).then((response) => {
+  userHelper.doSignup(req.body).then((response) => {
     res.render("users/userHome", { admin: false });
   });
 };
@@ -158,7 +160,7 @@ const checkOtp = (req, res) => {
   console.log(OTP);
   console.log(req.body);
   if (OTP == req.body.otpSend) {
-    userHelpers.updateVerified(userId).then((response) => {
+    userHelper.updateVerified(userId).then((response) => {
       console.log("success");
       console.log(OTP);
       res.redirect("/");
