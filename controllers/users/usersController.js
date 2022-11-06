@@ -1,11 +1,11 @@
-const userHelper = require("../../models/helpers/user-helper");
+
 const nodemailer = require("nodemailer");
 const session = require("express-session");
 const productHelpers = require("../../models/productHelpers");
 const bannerHelper = require("../../models/bannerHelper");
 const categoryHelper = require("../../models/categoryHelper");
 const userHelpers = require('../../models/userHelper/userCartHelper')
-
+const userHelper = require('../../models/helpers/user-helper')
 
 //user login
 const userLogin = (req, res) => {
@@ -73,7 +73,7 @@ const userSignup = (req, res) => {
       console.log("Email send successfully");
     }
   });
-  userHelpers
+  userHelper
     .insertUserCredentials(verified, Name, Email, Password,Lname,Phone)
     .then((response) => {
       userId = response.insertedId;

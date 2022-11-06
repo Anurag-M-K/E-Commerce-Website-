@@ -38,12 +38,14 @@
 							<tbody>
 								<% for(var i=0; i<products.length; i++) { %>
 									<tr>
-										
+									 
 										<td style="border: 1px solid #000000;"> <%= i+1 %> </td>
 										<td style="border: 1px solid #000000;"> <%= products[i].products[0].productName %> </td>
 										<td style="border: 1px solid #000000;"> <img src="/images/<%= products[i].products[0].Image %>" style="width:75px ; height:50px;" alt=""></td>
 										<td style="border: 1px solid #000000;"> <%= products[i].products[0].Price %>  </td>
-										<td style="border: 1px solid #000000;"><button class="cart-item-count mr-3 btn btn-secondary" >-</button>     1     <button class="cart-item-count ml-3 btn btn-secondary" >+</button></td>
+								
+
+										<td style="border: 1px solid #000000;"><button class="cart-item-count mr-3 btn btn-secondary" >-</button>    <%= products[i].products[0].cartCount[1] %>    <button class="cart-item-count ml-3 btn btn-secondary" >+</button></td>
 									   <td style="border: 1px solid #000000;"> <a href="/deleteProduct?id=<%= products[i]._id %>" class="btn btn-danger">Delete</a>  </td>
 								    </tr>
 
