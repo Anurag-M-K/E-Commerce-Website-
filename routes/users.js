@@ -49,4 +49,15 @@ router.get('/users/singlePage',userSinglePage.single)
 
 //nav buttons
 router.get('/homeButton',navButtons.homeButton)
+
+//plceorder
+router.get('/payment',userCheckOut.payment)
+
+
+
+
+
+
 module.exports=router
+
+

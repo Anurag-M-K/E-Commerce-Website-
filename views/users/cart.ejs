@@ -32,6 +32,7 @@
 								<th>Image</th>
 								<th>Price</th>
 								<th>Quantity</th>
+								<th>Total</th>
 								<th>Remove</th>
 							</tr>
 						</thead>
@@ -46,20 +47,30 @@
 								
 
 										<td style="border: 1px solid #000000;">
-										<button class="cart-item-count mr-3 btn btn-secondary" onclick="changeQuantity('<%= products[i]._id%>','<%= products[i].products._id %>',-1,'<%= userData._id %>')" >-</button> 
+										<button class="cart-item-count mr-3 btn btn-secondary" onclick="changeQuantity('<%= products[i]._id%>','<%= products[i].products._id %>',-1,'<%= userData._id %>',)" >-</button> 
 									   <span id="<%= products[i].products._id %>"><%= products[i].quantity %></span> 
 									    <input disabled type="text" value="<%= products[i].quantity %>" style="width: 1%; flex: 1 1 auto; background: #f5f5f5; border: 0; padding: 0 5px;" id="<%= products[i].quantity %>">
 									   <button type="submit" class="cart-item-count ml-3 btn btn-secondary" onclick="changeQuantity('<%= products[i]._id%>','<%= products[i].products._id %>',1,'<%= userData._id %>')" >+</button></td>
+									   <td style="border: 1px solid #000000;"></td>
 									   <td style="border: 1px solid #000000;"> <a href="/deleteProduct?id=<%= products[i]._id %>" class="btn btn-danger">Delete</a>  </td>
 								    
 									</tr>
 
 									<% } %>
+
+
+									<div>
+
+									</div>
 							</tbody>
 							
 							
 						
 					</table>
+					<br>
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end m-2">
+						<a href="/payment" class="btn btn-success btn-md active" role="button" aria-pressed="true">Place Order</a>
+						</div> 
 				</div>
 			</div>
 			

@@ -24,7 +24,7 @@ const cart =  async(req,res)=>{
         let products =await userHelper.getCartProducts(req.session.user._id)
     
             cartCount = await userHelper.getCartCount(req.session.user._id)
-            console.log("this is cartCount ",cartCount)
+    
            
      res.render('users/cart',{user:true,admin:false,userData,products,cartCount})
     }else{
