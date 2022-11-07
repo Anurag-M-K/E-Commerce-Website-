@@ -1,6 +1,7 @@
 const ObjectId = require('mongodb').ObjectID
 const collection = require("../../config/collection")
 const db = require("../../config/connection")
+const { loginview } = require('../../controllers/admin/adloginController')
 
 
 module.exports = {
@@ -11,8 +12,10 @@ module.exports = {
            
 
         }
+       
         return new Promise(async(resolve,reject)=>{
             let userCart = await db.get().collection(collection.CART_COLLECTION).findOne({user:ObjectId(userId)})
+           
             if(userCart){
                 let proExist = userCart.products.findIndex(product => product.item==proId)
               
@@ -23,7 +26,9 @@ module.exports = {
                         $inc :{ 'products.$.quantity':1}
                     }
                     ).then(()=>{
+                        
                         resolve()
+                        
                     })
                 }else{
                 db.get().collection(collection.CART_COLLECTION)
@@ -103,13 +108,16 @@ module.exports = {
         })
     },
     changeProductQuantity:(details)=>{
+        
         details.count = parseInt(details.count)
         details.quantity = parseInt(details.quantity)
-console.log("hello")
-       
+
+        // let cartId = ObjectId(details.cart) 
+        
+
         return new Promise((resolve,reject)=>{
              if(details.count == -1 && details.quantity == 1){
-
+                    
                 db.get().collection(collection.CART_COLLECTION)
                 .updateOne({_id:ObjectId(details.cart)},
                 {
@@ -118,9 +126,10 @@ console.log("hello")
                 ).then((response)=>{
                     resolve({removeProduct : true})
                 })
+                
             }else{
             db.get().collection(collection.CART_COLLECTION)
-            .updateOne({_id:ObjectId(details.cart),'products.item':ObjectId(details.products)},
+            .updateOne({_id:ObjectId(details.cart),'products.item':ObjectId(details.product)},
             {
                 $inc : {"products.$.quantity":details.count }
             }).then((response)=>{
@@ -128,7 +137,8 @@ console.log("hello")
             })
           
         }
-
+   
         })
+        
     }
 }

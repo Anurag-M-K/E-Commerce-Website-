@@ -36,6 +36,7 @@ const cart =  async(req,res)=>{
 
  const productCount = (req,res,next)=>{
     console.log("checking the inc or dec")
+    console.log(req.body);
     userHelper.changeProductQuantity(req.body ).then((response)=>{
        res.json(response)
        

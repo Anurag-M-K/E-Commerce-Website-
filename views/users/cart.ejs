@@ -51,7 +51,8 @@
 									    <input disabled type="text" value="<%= products[i].quantity %>" style="width: 1%; flex: 1 1 auto; background: #f5f5f5; border: 0; padding: 0 5px;" id="<%= products[i].quantity %>">
 									   <button type="submit" class="cart-item-count ml-3 btn btn-secondary" onclick="changeQuantity('<%= products[i]._id%>','<%= products[i].products._id %>',1,'<%= userData._id %>')" >+</button></td>
 									   <td style="border: 1px solid #000000;"> <a href="/deleteProduct?id=<%= products[i]._id %>" class="btn btn-danger">Delete</a>  </td>
-								    </tr>
+								    
+									</tr>
 
 									<% } %>
 							</tbody>
@@ -68,7 +69,7 @@
 
 	<!-- footer -->
 <script>
-	function changeQuantity(cartId,proId,count){
+	function changeQuantity(cartId,proId,count,userData){
 		
 		let quantity = parseInt(document.getElementById(proId).innerHTML)
 		count = parseInt(count)
