@@ -1,5 +1,6 @@
 
 
+const { Router } = require('express');
 const userHelper = require('../../models/userHelper/userCartHelper')
 
 
@@ -33,9 +34,18 @@ const cart =  async(req,res)=>{
  }
 
 
+ const productCount = (req,res,next)=>{
+    console.log("checking the inc or dec")
+    userHelper.changeProductQuantity(req.body ).then((response)=>{
+       res.json(response)
+       
+    })
+ }
+
 
 
 module.exports = {
     cart,
-    addToCart
+    addToCart,
+    productCount
 }

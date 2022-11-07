@@ -40,12 +40,16 @@
 									<tr>
 									 
 										<td style="border: 1px solid #000000;"> <%= i+1 %> </td>
-										<td style="border: 1px solid #000000;"> <%= products[i].products[0].productName %> </td>
-										<td style="border: 1px solid #000000;"> <img src="/images/<%= products[i].products[0].Image %>" style="width:75px ; height:50px;" alt=""></td>
-										<td style="border: 1px solid #000000;"> <%= products[i].products[0].Price %>  </td>
+										<td style="border: 1px solid #000000;"> <%= products[i].products.productName %> </td>
+										<td style="border: 1px solid #000000;"> <img src="/images/<%= products[i].products.Image %>" style="width:75px ; height:50px;" alt=""></td>
+										<td style="border: 1px solid #000000;"> <%= products[i].products.Price %>  </td>
 								
 
-										<td style="border: 1px solid #000000;"><button class="cart-item-count mr-3 btn btn-secondary" >-</button>    <%= products[i].products[0].cartCount[1] %>    <button class="cart-item-count ml-3 btn btn-secondary" >+</button></td>
+										<td style="border: 1px solid #000000;">
+										<button class="cart-item-count mr-3 btn btn-secondary" onclick="changeQuantity('<%= products[i]._id%>','<%= products[i].products._id %>',-1,'<%= userData._id %>')" >-</button> 
+									   <span id="<%= products[i].products._id %>"><%= products[i].quantity %></span> 
+									    <input disabled type="text" value="<%= products[i].quantity %>" style="width: 1%; flex: 1 1 auto; background: #f5f5f5; border: 0; padding: 0 5px;" id="<%= products[i].quantity %>">
+									   <button type="submit" class="cart-item-count ml-3 btn btn-secondary" onclick="changeQuantity('<%= products[i]._id%>','<%= products[i].products._id %>',1,'<%= userData._id %>')" >+</button></td>
 									   <td style="border: 1px solid #000000;"> <a href="/deleteProduct?id=<%= products[i]._id %>" class="btn btn-danger">Delete</a>  </td>
 								    </tr>
 
@@ -63,3 +67,33 @@
 			</div>
 
 	<!-- footer -->
+<script>
+	function changeQuantity(cartId,proId,count){
+		
+		let quantity = parseInt(document.getElementById(proId).innerHTML)
+		count = parseInt(count)
+
+		$.ajax({
+		
+			url:'/change-product-quantity',
+			data:{
+				cart:cartId,
+				product:proId,
+				count:count,
+				quantity:quantity
+			},
+			method:'post',
+			success:(response)=>{
+				if(response.removeProduct){
+					alert("Product Removed from cart")
+					location.reload()
+				}else{
+					document.getElementById(proId).innerHTML=quantity+count
+				}
+				
+			}
+		})
+
+	}
+	
+</script>

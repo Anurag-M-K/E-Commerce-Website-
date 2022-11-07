@@ -54,70 +54,13 @@
 
 
 
-	<!-- register -->
-	<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">Register</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form action="#" method="post">
-						<div class="form-group">
-							<label class="col-form-label">Your Name</label>
-							<input type="text" class="form-control" placeholder=" " name="Name" required="">
-						</div>
-						<div class="form-group">
-							<label class="col-form-label">Email</label>
-							<input type="email" class="form-control" placeholder=" " name="Email" required="">
-						</div>
-						<div class="form-group">
-							<label class="col-form-label">Password</label>
-							<input type="password" class="form-control" placeholder=" " name="Password" id="password1" required="">
-						</div>
-						<div class="form-group">
-							<label class="col-form-label">Confirm Password</label>
-							<input type="password" class="form-control" placeholder=" " name="Confirm Password" id="password2" required="">
-						</div>
-						<div class="right-w3l">
-							<input type="submit" class="form-control" value="Register">
-						</div>
-						<div class="sub-w3l">
-							<div class="custom-control custom-checkbox mr-sm-2">
-								<input type="checkbox" class="custom-control-input" id="customControlAutosizing2">
-								<label class="custom-control-label" for="customControlAutosizing2">I Accept to the Terms & Conditions</label>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- //modal -->
-	<!-- //top-header -->
-
-	
-				<!-- //logo -->
-				<!-- header-bot -->
-			
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- shop locator (popup) -->
-	<!-- //header-bottom -->
-	<!-- navigation -->
-
-	<!-- //navigation -->
 
 
 
 
-	<!-- banner -->
+	<!-------------------------------------------------- banner --------------------------------------------------->
+
+
 	<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
 		<div class="carousel-inner">
 			<% for(var i=0; i<banners.length;i++) { %>
@@ -135,13 +78,13 @@
 		  <span class="visually-hidden">Next</span>
 		</button>
 	  </div>
-	<!-- //banner -->
+	<!-- ----------------------------------------------banner ---------------------------------------------------------->
 
 
 
 
 
-	<!-- top Products -->
+	<!------------------------------------------------- top Products ---------------------------------------------------->
 	<div class="ads-grid py-sm-5 py-4 bg-light" >
 		<div class="container py-xl-4 py-lg-2">
 			<!-- tittle heading -->
@@ -190,16 +133,16 @@
 						margin-top: -5rem;">
                           <% for (var i= 0 ; i<products.length ;  i++) { %>
 							
-                          <div class="col-md-4">
-                            <div class="card" style="width: 14rem;
+                          <div class="col-md-4 p-0" >
+                            <div class="card" style="    width: 14rem;
 							height: 20rem;
 							margin-right: 2rem;
-							border: 2px solid black;">
+							border: 0px solid black;">
 								<img src="/images/<%= products[i].Pitcure %>" style="width:130px ; height:120px;    margin-left: 2rem;" alt="">
                              <div class="card-body">
                               <h5 class="card-title"><%= products[i].productName %></h5>
                               <p class="card-text"><%= products[i].Price %> </p>
-							  <a href="/users/singlePage"><button>view</button></a>
+							  <a href="/users/singlePage"><button >view</button></a>
                               <!-- <a href="/add-to-cart/<%= products[i]._id %>" class="btn btn-primary">Add to cart</a> -->
 							  <button onclick="addToCart('<%= products[i]._id %>')"    class="btn btn-primary">Add to cart</button>
                              </div>

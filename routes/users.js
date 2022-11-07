@@ -34,6 +34,7 @@ router.post('/checkOtp',usersController.checkOtp)
 //cart
 router.get('/add-to-cart/:id',userCart.addToCart)
 router.get('/users/cart',userCart.cart)
+router.post('/change-product-quantity',userCart.productCount)
 
 
 
