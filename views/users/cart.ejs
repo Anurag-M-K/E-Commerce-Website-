@@ -5,7 +5,7 @@
 
 	</div>
 	
-	<div class="privacy ">
+	<div class="privacy bg-light">
 		<div class="container py-xl-4 py-lg-2">
 			<!-- tittle heading -->
 			<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
@@ -51,7 +51,7 @@
 									   <span id="<%= products[i].products._id %>"><%= products[i].quantity %></span> 
 									    <input disabled type="text" value="<%= products[i].quantity %>" style="width: 1%; flex: 1 1 auto; background: #f5f5f5; border: 0; padding: 0 5px;" id="<%= products[i].quantity %>">
 									   <button type="submit" class="cart-item-count ml-3 btn btn-secondary" onclick="changeQuantity('<%= products[i]._id%>','<%= products[i].products._id %>',1,'<%= userData._id %>')" >+</button></td>
-									   <td style="border: 1px solid #000000;"></td>
+									   <td style="border: 1px solid #000000;"><%= subTotal %></td>
 									   <td style="border: 1px solid #000000;"> <a href="/deleteProduct?id=<%= products[i]._id %>" class="btn btn-danger">Delete</a>  </td>
 								    
 									</tr>
@@ -69,7 +69,10 @@
 					</table>
 					<br>
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end m-2">
-						<a href="/placeOrder" class="btn btn-success btn-md active" role="button" aria-pressed="true">Place Order</a>
+						<div style="border: 1px solid #000000; padding: 10px;
+						padding-top: 9px;
+						border: 1px solid #000000;
+						border-radius: 8px;">Total:<%= totalAmount %></div><a href="/placeOrder" class="btn btn-success btn-md active" role="button" aria-pressed="true">Place Order</a>
 						</div> 
 				</div>
 			</div>

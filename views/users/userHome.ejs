@@ -84,8 +84,43 @@
 
 
 
+
+	<!-- ---------------------------------------------Category--------------------------------------------------- -->
+
+	<div class="container-fluid pt-5 bg-light">
+		<h3 class="text-center text-danger fs-2 ">Categories</h3>
+		<br>
+        <div class="row px-xl-5 pb-3">
+       
+            <% for(var i=0;i<CategoryDetails.length;i++) { %>
+            
+            <div class="col-lg-4 col-md-6 pb-1 ">
+                <div class="cat-item d-flex flex-column border  mb-4 bg-light" style="padding: 30px;">
+                    
+                 </p>
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3 ">
+                        <% for(var j=0 ;j<products.length;j++ ) { %>
+                            <% if(products[j]._category) { %>
+                        <img class="img-fluid" src="/images/<%=products[i].picture %>" alt="">
+                        <% } %>
+                        <% } %>
+                    </a>
+                   <a href="/categoryBasedPage"> <h5 class="font-weight-semi-bold m-0 text-center pb-2	"><%= CategoryDetails[i]._category %></h5></a>
+                </div>
+            </div>
+            <% } %> 
+            
+           
+        </div>
+    </div>
+<!-- ---------------------------------------------Category--------------------------------------------------- -->
+
+
+
+
+
 	<!------------------------------------------------- top Products ---------------------------------------------------->
-	<div class="ads-grid py-sm-5 py-4 bg-light" >
+	<div class="ads-grid py-sm-4 py-4 bg-light" >
 		<div class="container py-xl-4 py-lg-2">
 			<!-- tittle heading -->
 			<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
@@ -168,6 +203,15 @@
 										</div>
 									</div>
 								</div>
+
+
+
+
+
+
+
+
+								
 								
                   <div class="col-md-4 product-men mt-5">
                     <div class="men-pro-item simpleCart_shelfItem">
@@ -178,7 +222,7 @@
                             <a href="single.html" class="link-product-add-cart">Quick View</a>
                           </div>
                         </div>
-                        <span class="product-new-top">New</span>
+                       
 
                       </div>
                       <div class="item-info-product text-center border-top mt-4">
@@ -600,33 +644,33 @@
 	<!-- //top products -->
 
 	<!-- middle section -->
-	<div class="join-w3l1 py-sm-5 py-4">
+	<div class="join-w3l1 py-sm-5 py-4 " >
 		<div class="container py-xl-4 py-lg-2">
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="join-agile text-left p-4">
+					<div class="join-agile text-left p-4 bg-dark ">
 						<div class="row">
 							<div class="col-sm-7 offer-name">
-								<h6>Smooth, Rich & Loud Audio</h6>
-								<h4 class="mt-2 mb-3">Branded Headphones</h4>
+								<h6>Adidas Spikes </h6>
+								<h4 class="mt-2 mb-3">Adidas Spikes</h4>
 								<p>Sale up to 25% off all in store</p>
 							</div>
 							<div class="col-sm-5 offerimg-w3l">
-								<img src="images/off1.png" alt="" class="img-fluid">
+								<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSD2hagM2cYohDh0xNAqThvw-J5y1VlpHaqA&usqp=CAU" alt="" class="img-fluid">
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-6 mt-lg-0 mt-5">
-					<div class="join-agile text-left p-4">
-						<div class="row ">
+				<div class="col-lg-6">
+					<div class="join-agile text-left p-4 bg-dark">
+						<div class="row">
 							<div class="col-sm-7 offer-name">
-								<h6>A Bigger Phone</h6>
-								<h4 class="mt-2 mb-3">Smart Phones 5</h4>
-								<p>Free shipping order over $100</p>
+								<h6>Puma Spikes </h6>
+								<h4 class="mt-2 mb-3">Puma Spikes</h4>
+								<p>Sale up to 25% off all in store</p>
 							</div>
 							<div class="col-sm-5 offerimg-w3l">
-								<img src="images/off2.png" alt="" class="img-fluid">
+								<img src="https://www.allroundercricket.com/media/catalog/product/cache/2/image/9df78eab33525d08d6e5fb8d27136e95/1/0/10550910-5-min.png" alt="" class="img-fluid">
 							</div>
 						</div>
 					</div>
@@ -634,6 +678,8 @@
 			</div>
 		</div>
 	</div>
+
+	<hr style="color:black ;">
 	<!-- middle section -->
 
 	<!-- footer -->
