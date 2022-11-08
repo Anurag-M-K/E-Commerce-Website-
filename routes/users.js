@@ -51,7 +51,7 @@ router.get('/users/singlePage',userSinglePage.single)
 router.get('/homeButton',navButtons.homeButton)
 
 //plceorder
-router.get('/payment',userCheckOut.payment)
+router.get('/placeOrder',userCheckOut.payment)
 
 
 

@@ -1,4 +1,5 @@
 const ObjectId = require('mongodb').ObjectID
+const { response } = require('express')
 const collection = require("../../config/collection")
 const db = require("../../config/connection")
 const { loginview } = require('../../controllers/admin/adloginController')
@@ -140,5 +141,67 @@ module.exports = {
    
         })
         
-    }
+    },
+    getTotalAmount : (userId)=>{
+        
+       
+            return new Promise(async(resolve,reject)=>{
+
+
+                const TotalAmount = await db.get().collection(collection.CART_COLLECTION).aggregate([
+                   
+                    {
+                        $match : {user:ObjectId(userId)}
+                    },
+                   
+                    {
+                        $unwind : "$products"
+                    },
+                    {
+                        $project:{
+                            item:'$products.item',
+                            quantity:'$products.quantity'
+                        }
+                    },
+                    
+                    {
+                        $lookup: {
+                            from :collection.PRODUCT_COLLECTION,
+                            localField : 'item',
+                            foreignField : "_id",
+                            as : "products"
+                        }
+                        
+                    },
+                    {
+                        $project:{
+                            item:1,quantity:1,products:{$arrayElemAt:['$products',0]}
+                        }
+                    },
+                    {
+                        $group:{
+                            _id:"",
+                            total:{
+                                $sum:{
+                                    $multiply:[
+                                        "$quantity","$products.Price"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]).toArray()
+             
+
+              
+                response.TotalAmount = TotalAmount
+                
+                resolve(TotalAmount[0].total)
+                    
+
+            
+            })
+           
+     }
+    
 }

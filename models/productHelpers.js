@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt')
 module.exports = {
     addProduct: (imageID,productionData)=>{
         return new Promise(async(resolve,reject)=>{
-
+            parseInt("Price")
             db.get().collection(collections.PRODUCT_COLLECTION).insertOne(imageID,productionData).then((data)=>{
              
                 resolve.apply(data)
@@ -41,7 +41,7 @@ module.exports = {
             db.get().collection(collections.PRODUCT_COLLECTION).updateOne({_id:ObjectId(productId)},{
                 $set:{
                     productName:productDetails.productName,
-                    Price:productDetails.Price,
+                    Price:parseInt(productDetails.Price),
                     Category:productDetails.Category,
                     brandName:productDetails.brandName,
                     Quantity : productDetails.Quantity,
